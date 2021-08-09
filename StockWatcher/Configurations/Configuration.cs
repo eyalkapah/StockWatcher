@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using StockWatcher.Services;
 using StockWatcher.Services.Interfaces;
 using StockWatcher.Services.Services;
 using StockWatcher.ViewModels.ViewModels;
@@ -9,13 +10,15 @@ namespace StockWatcher.Configurations
     {
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
-            return services.AddSingleton<ITextService, TextService>();
+            return services.AddSingleton<ITextService, TextService>()
+                .AddSingleton<INavigationService, NavigationService>();
 
         }
 
         public static IServiceCollection ConfigureViewModels(this IServiceCollection services)
         {
-            return services.AddScoped<MainWindowViewModel>();
+            return services.AddScoped<MainWindowViewModel>()
+                .AddScoped<LoginViewModel>();
         }
     }
 }

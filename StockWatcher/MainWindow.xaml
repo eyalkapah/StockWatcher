@@ -10,5 +10,7 @@
     Height="450"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     mc:Ignorable="d">
-    <Grid />
+    <Grid>
+        <Frame x:Name="ContentFrame"></Frame>
+    </Grid>
 </Window>

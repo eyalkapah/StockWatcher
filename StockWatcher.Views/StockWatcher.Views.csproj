@@ -98,10 +98,15 @@
       <Project>{68087da3-0e32-4904-bc9b-a8dc15fd45cf}</Project>
       <Name>StockWatcher.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StockWatcher.Services\StockWatcher.Services.csproj">
+      <Project>{4B9E6B30-C641-46E3-97AB-1514FC1587B6}</Project>
+      <Name>StockWatcher.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockWatcher.ViewModels\StockWatcher.ViewModels.csproj">
       <Project>{e3fc4692-1de6-48d7-9acd-0a6d4bc840f5}</Project>
       <Name>StockWatcher.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

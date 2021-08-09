@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using StockWatcher.Services.Interfaces;
 
 namespace StockWatcher
 {
@@ -23,6 +25,20 @@ namespace StockWatcher
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var navigationService = Ioc.Default.GetService<INavigationService>();
+
+            if (navigationService != null)
+            {
+                navigationService.SetFrame(ContentFrame);
+
+                navigationService.NavigateToLogin();
+            }
         }
     }
 }

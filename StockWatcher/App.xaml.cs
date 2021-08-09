@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using StockWatcher.Configurations;
@@ -28,7 +29,5 @@ namespace StockWatcher
 
             Ioc.Default.ConfigureServices(provider);
         }
-
-        
     }
 }
