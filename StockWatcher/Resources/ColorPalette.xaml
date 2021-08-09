@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="LightGray">#D3D3D3</Color>
+    <Color x:Key="GrayColor">#EFEFEF</Color>
+
+
+    <SolidColorBrush x:Key="OuterBorderBrush" Color="{StaticResource LightGray}" />
+    <SolidColorBrush x:Key="InnerBorderBackgroundBrush" Color="{StaticResource GrayColor}" />
+</ResourceDictionary>

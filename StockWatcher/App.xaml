@@ -5,6 +5,15 @@
     xmlns:viewModels="clr-namespace:StockWatcher.ViewModels.ViewModels;assembly=StockWatcher.ViewModels"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <viewModels:ViewModelLocator x:Key="Locator" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/GlobalStyles.xaml" />
+                <ResourceDictionary Source="Resources/Typography.xaml" />
+                <ResourceDictionary Source="Resources/ColorPalette.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <viewModels:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
