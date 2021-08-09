@@ -11,6 +11,65 @@
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="{Binding Title}" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock
+                Margin="0,0,0,30"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Sign in to StockWatcher" />
+
+            <Border
+                Background="#EFEFEF"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                CornerRadius="5">
+                <StackPanel Margin="15">
+
+
+                    <TextBlock
+                        Margin="0,0,0,5"
+                        FontSize="14"
+                        Text="Username" />
+                    <TextBox
+                        Height="25"
+                        Padding="2,0"
+                        VerticalContentAlignment="Center"
+                        FontSize="14"
+                        Text="{Binding Username, Mode=TwoWay}" />
+
+                    <TextBlock
+                        Margin="0,10,0,5"
+                        FontSize="14"
+                        Text="Password" />
+                    <PasswordBox
+                        Height="25"
+                        Padding="2,0"
+                        VerticalContentAlignment="Center"
+                        FontSize="14" />
+
+                    <Button
+                        Height="30"
+                        Margin="0,20,0,10"
+                        Command="{Binding SignInCommand}"
+                        Content="Sign in" />
+                </StackPanel>
+            </Border>
+
+            <Border
+                Margin="0,15"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                CornerRadius="5">
+                <StackPanel Margin="15" Orientation="Horizontal">
+                    <TextBlock Text="New to StockWatcher?" />
+                    <TextBlock>
+                        <Run />
+                        <Hyperlink Command="{Binding CreateAccountCommand}">
+                            Create an account
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </Page>

@@ -1,25 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
+using System.Windows.Input;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
     public class LoginViewModel : ObservableObject
     {
-        private string _title;
+        private string _username;
 
-        public string Title
+        public string Username
         {
-            get => _title;
-            set => SetProperty(ref _title, value);
+            get => _username;
+            set => SetProperty(ref _username, value);
         }
 
+        public ICommand SignInCommand { get; set; }
+        public ICommand CreateAccountCommand { get; set; }
+
+        // C'tor
+        //
         public LoginViewModel()
         {
-            Title = "Login title";
+            SignInCommand = new RelayCommand(SignIn);
+            CreateAccountCommand = new RelayCommand(CreateAccount);
+        }
+
+        private void CreateAccount()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SignIn()
+        {
+            throw new NotImplementedException();
         }
     }
 }
