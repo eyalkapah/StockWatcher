@@ -17,8 +17,22 @@ namespace StockWatcher.Services
         {
             var loginPage = new LoginPage();
 
+            Navigate(loginPage);
+        }
 
-            if (_frame.Navigate(loginPage))
+        public void NavigateToCreateAccount()
+        {
+            var createAccountPage = new CreateAccountPage();
+
+            Navigate(createAccountPage);
+        }
+
+        private void Navigate(Page page)
+        {
+            if (_frame == null)
+                return;
+
+            if (_frame.Navigate(page))
             {
 
             }

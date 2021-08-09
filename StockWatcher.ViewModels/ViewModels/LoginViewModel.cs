@@ -2,11 +2,13 @@
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Windows.Input;
+using StockWatcher.Services.Interfaces;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
     public class LoginViewModel : ObservableObject
     {
+        private readonly INavigationService _navigationService;
         private string _username;
 
         public string Username
@@ -20,15 +22,16 @@ namespace StockWatcher.ViewModels.ViewModels
 
         // C'tor
         //
-        public LoginViewModel()
+        public LoginViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             SignInCommand = new RelayCommand(SignIn);
             CreateAccountCommand = new RelayCommand(CreateAccount);
         }
 
         private void CreateAccount()
         {
-            throw new NotImplementedException();
+            _navigationService.NavigateToCreateAccount();
         }
 
         private void SignIn()

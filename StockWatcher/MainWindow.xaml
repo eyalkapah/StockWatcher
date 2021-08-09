@@ -11,6 +11,6 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     mc:Ignorable="d">
     <Grid>
-        <Frame x:Name="ContentFrame" />
+        <Frame x:Name="ContentFrame"  />
     </Grid>
 </Window>

@@ -5,5 +5,6 @@
         void SetFrame(object frame);
 
         void NavigateToLogin();
+        void NavigateToCreateAccount();
     }
 }
