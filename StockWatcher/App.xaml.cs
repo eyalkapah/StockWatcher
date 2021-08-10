@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -6,9 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using StockWatcher.Configurations;
+using StockWatcher.Models;
 
 namespace StockWatcher
 {
@@ -19,15 +22,7 @@ namespace StockWatcher
     {
         public App()
         {
-            var services = new ServiceCollection();
-
-            services.ConfigureServices();
-
-            services.ConfigureViewModels();
-
-            var provider = services.BuildServiceProvider();
-
-            Ioc.Default.ConfigureServices(provider);
+            Configuration.Build();
         }
     }
 }

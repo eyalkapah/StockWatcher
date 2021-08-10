@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using StockWatcher.Models;
 using StockWatcher.Services;
 using StockWatcher.Services.Interfaces;
 using StockWatcher.Services.Services;
@@ -8,18 +11,44 @@ namespace StockWatcher.Configurations
 {
     public static class Configuration
     {
-        public static IServiceCollection ConfigureServices(this IServiceCollection services)
-        {
-            return services.AddSingleton<ITextService, TextService>()
-                .AddSingleton<INavigationService, NavigationService>();
+        private static ServiceCollection _services;
 
+
+        public static void Build()
+        {
+            BuildInjectionContainer();
+
+            var settings = BuildConfiguration();
+
+            _services.ConfigureSystemSettings(settings);
         }
 
-        public static IServiceCollection ConfigureViewModels(this IServiceCollection services)
+        private static ApplicationSettings BuildConfiguration()
         {
-            return services.AddScoped<MainWindowViewModel>()
-                .AddScoped<LoginViewModel>()
-                .AddScoped<CreateAccountViewModel>();
+            var builder = new ConfigurationBuilder();
+
+#if DEBUG
+            builder.AddJsonFile("appSettings-debug.json", false);
+#else
+            builder.AddJsonFile("appsettings-secrets.json", false);
+#endif
+
+            var config = builder.Build();
+
+            return config.Get<ApplicationSettings>();
+        }
+
+        private static void BuildInjectionContainer()
+        {
+            _services = new ServiceCollection();
+
+            _services.ConfigureServices();
+            
+            _services.ConfigureViewModels();
+
+            var provider = _services.BuildServiceProvider();
+
+            Ioc.Default.ConfigureServices(provider);
         }
     }
 }
