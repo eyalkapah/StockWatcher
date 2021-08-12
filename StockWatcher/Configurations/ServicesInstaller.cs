@@ -11,7 +11,8 @@ namespace StockWatcher.Configurations
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             return services.AddSingleton<ITextService, TextService>()
-                .AddSingleton<INavigationService, NavigationService>();
+                .AddSingleton<INavigationService, NavigationService>()
+                .AddSingleton<IAuthenticationService, AuthenticationService>();
 
         }
 
