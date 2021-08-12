@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StockWatcher.ViewModels.ViewModels;
 
 namespace StockWatcher.Pages
 {
@@ -20,9 +21,32 @@ namespace StockWatcher.Pages
     /// </summary>
     public partial class CreateAccountPage : Page
     {
+        public CreateAccountViewModel ViewModel => DataContext as CreateAccountViewModel;
         public CreateAccountPage()
         {
             InitializeComponent();
+
+            //PasswordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
+            //PasswordConfirmationBox.PasswordChanged += PasswordConfirmationBoxOnPasswordChanged;
+        }
+
+        private void PasswordConfirmationBoxOnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            var passwordBox = e.OriginalSource as PasswordBox;
+
+            ViewModel.Account.Password = passwordBox?.Password;
+        }
+
+        private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            SetPassword(e);
+        }
+
+        private void SetPassword(RoutedEventArgs e)
+        {
+            var passwordBox = e.OriginalSource as PasswordBox;
+
+            ViewModel.Account.PasswordConfirmation = passwordBox?.Password;
         }
     }
 }

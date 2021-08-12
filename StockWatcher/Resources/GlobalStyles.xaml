@@ -12,4 +12,15 @@
         <Setter Property="Padding" Value="2,0" />
         <Setter Property="FontSize" Value="14" />
     </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="Height" Value="30" />
+    </Style>
+
+    <Style
+        x:Key="ConfirmationButtonStyle"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ConfirmationButtonBackgroundBrush}" />
+    </Style>
 </ResourceDictionary>
