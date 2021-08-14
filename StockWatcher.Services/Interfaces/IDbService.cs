@@ -8,6 +8,6 @@ namespace StockWatcher.Services.Interfaces
 {
     public interface IDbService
     {
-        
+        Task ExecuteAsync<T>(string storedProcedure, T parameters);
     }
 }

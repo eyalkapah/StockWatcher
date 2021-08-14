@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.90\lib\net461\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,10 +58,18 @@
     <Compile Include="Services\TextService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StockWatcher.Common\StockWatcher.Common.csproj">
+      <Project>{914CA372-084D-4849-95E3-E7CDDAC397DA}</Project>
+      <Name>StockWatcher.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockWatcher.Models\StockWatcher.Models.csproj">
       <Project>{68087DA3-0E32-4904-BC9B-A8DC15FD45CF}</Project>
       <Name>StockWatcher.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

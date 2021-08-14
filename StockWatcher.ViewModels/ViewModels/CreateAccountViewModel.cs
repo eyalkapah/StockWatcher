@@ -60,6 +60,14 @@ namespace StockWatcher.ViewModels.ViewModels
             set => SetProperty(ref _passwordConfirmationErrorMessage, value);
         }
 
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set => SetProperty(ref _errorMessage, value);
+        }
+
         public ICommand RegisterCommand { get; set; }
 
         // C'tor
@@ -86,8 +94,14 @@ namespace StockWatcher.ViewModels.ViewModels
                 EmailErrorMessage = string.Empty;
                 PasswordErrorMessage = string.Empty;
                 PasswordConfirmationErrorMessage = string.Empty;
+                ErrorMessage = string.Empty;
 
-                _authenticationService.Register(Account);
+                var response = await _authenticationService.RegisterAsync(Account);
+
+                if (!response.IsSuccess())
+                {
+                    ErrorMessage = response.Message;
+                }
             }
             else
             {
