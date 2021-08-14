@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using StockWatcher.Models;
 
 namespace StockWatcher.ViewModels.Utils
@@ -12,11 +7,16 @@ namespace StockWatcher.ViewModels.Utils
     {
         public AccountValidator()
         {
-            RuleFor(c => c.FirstName).NotEmpty();
-            RuleFor(c => c.LastName).NotEmpty();
+            RuleFor(c => c.FirstName)
+                .NotEmpty()
+                .MaximumLength(50);
+            RuleFor(c => c.LastName)
+                .NotEmpty()
+                .MaximumLength(50);
             RuleFor(c => c.Email)
                 .NotEmpty()
-                .EmailAddress();
+                .EmailAddress()
+                .MaximumLength(64);
             RuleFor(c => c.Password)
                 .NotEmpty()
                 .MinimumLength(6)

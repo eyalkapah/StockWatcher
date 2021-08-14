@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StockWatcher.Models;
-using StockWatcher.Services.Helpers;
+using StockWatcher.Models.Settings;
 using StockWatcher.Services.Interfaces;
 
 namespace StockWatcher.Services.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public class DbService : IDbService
     {
-        public void Register(Account account)
+        private readonly string _connectionString;
+
+        public DbService(string connectionString)
         {
-            var hash = Crypto.HashPassword(account.Password);
+            _connectionString = connectionString;
         }
     }
 }

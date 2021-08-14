@@ -74,7 +74,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="Settings\ApplicationSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StockWatcher.Common\StockWatcher.Common.csproj">

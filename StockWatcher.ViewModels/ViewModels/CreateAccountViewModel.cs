@@ -4,12 +4,14 @@ using FluentValidation.Results;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using StockWatcher.Models;
+using StockWatcher.Services.Interfaces;
 using StockWatcher.ViewModels.Utils;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
     public class CreateAccountViewModel : ObservableObject
     {
+        private readonly IAuthenticationService _authenticationService;
         private Account _account;
 
         private string _emailErrorMessage;
@@ -62,8 +64,10 @@ namespace StockWatcher.ViewModels.ViewModels
 
         // C'tor
         //
-        public CreateAccountViewModel()
+        public CreateAccountViewModel(IAuthenticationService authenticationService)
         {
+            _authenticationService = authenticationService;
+
             Account = new Account();
 
             RegisterCommand = new RelayCommand(Register);
@@ -82,6 +86,8 @@ namespace StockWatcher.ViewModels.ViewModels
                 EmailErrorMessage = string.Empty;
                 PasswordErrorMessage = string.Empty;
                 PasswordConfirmationErrorMessage = string.Empty;
+
+                _authenticationService.Register(Account);
             }
             else
             {
@@ -94,6 +100,8 @@ namespace StockWatcher.ViewModels.ViewModels
                 PasswordErrorMessage = GetErrorMessage(results, nameof(Account.Password));
 
                 PasswordConfirmationErrorMessage = GetErrorMessage(results, nameof(Account.PasswordConfirmation));
+
+                
             }
         }
 

@@ -1,17 +1,9 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using StockWatcher.Configurations;
+using StockWatcher.Services.Interfaces;
 using System.Windows;
-using System.Windows.Navigation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using StockWatcher.Configurations;
-using StockWatcher.Models;
 
 namespace StockWatcher
 {
@@ -20,9 +12,44 @@ namespace StockWatcher
     /// </summary>
     public partial class App : Application
     {
+        public IConfiguration Configuration { get; }
+
+
         public App()
         {
-            Configuration.Build();
+            Configuration = BuildConfiguration();
+
+            var services = new ServiceCollection();
+
+            ConfigureServices(services);
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            services.ConfigureServices();
+
+            services.ConfigureViewModels();
+
+            services.ConfigureApplicationSettings();
+            
+            services.ConfigureDb(Configuration, "StockWatcher");
+
+            var provider = services.BuildServiceProvider();
+
+            Ioc.Default.ConfigureServices(provider);
+        }
+
+        private static IConfiguration BuildConfiguration()
+        {
+            var builder = new ConfigurationBuilder();
+
+#if DEBUG
+            builder.AddJsonFile("appSettings-debug.json", false);
+#else
+            builder.AddJsonFile("appsettings-secrets.json", false);
+#endif
+
+            return builder.Build();
         }
     }
 }

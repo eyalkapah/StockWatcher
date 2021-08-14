@@ -7,9 +7,10 @@ namespace StockWatcher.Configurations
     {
         public static IServiceCollection ConfigureViewModels(this IServiceCollection services)
         {
-            return services.AddScoped<MainWindowViewModel>()
-                .AddScoped<LoginViewModel>()
-                .AddScoped<CreateAccountViewModel>();
+            return services
+                .AddTransient<MainWindowViewModel>()
+                .AddTransient<LoginViewModel>()
+                .AddTransient<CreateAccountViewModel>();
         }
     }
 }

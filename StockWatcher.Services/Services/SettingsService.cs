@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StockWatcher.Models;
+using StockWatcher.Models.Settings;
 using StockWatcher.Services.Interfaces;
 
 namespace StockWatcher.Services.Services
