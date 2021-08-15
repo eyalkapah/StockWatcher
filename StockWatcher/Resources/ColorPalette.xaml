@@ -4,10 +4,14 @@
     <Color x:Key="GrayColor">#EFEFEF</Color>
     <Color x:Key="ConfirmationYellow">#F4C41B</Color>
     <Color x:Key="Red">Red</Color>
+    <Color x:Key="DarkRed">DarkRed</Color>
+    <Color x:Key="IndianRed">IndianRed</Color>
 
 
     <SolidColorBrush x:Key="OuterBorderBrush" Color="{StaticResource LightGray}" />
     <SolidColorBrush x:Key="InnerBorderBackgroundBrush" Color="{StaticResource GrayColor}" />
     <SolidColorBrush x:Key="ConfirmationButtonBackgroundBrush" Color="{StaticResource ConfirmationYellow}" />
     <SolidColorBrush x:Key="ErrorTextBrush" Color="{StaticResource Red}" />
+    <SolidColorBrush x:Key="ErrorTextBackgroundBrush" Color="{StaticResource IndianRed}" />
+    <SolidColorBrush x:Key="ErrorTextBorderBrush" Color="{StaticResource DarkRed}" />
 </ResourceDictionary>

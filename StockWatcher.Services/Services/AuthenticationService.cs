@@ -50,5 +50,20 @@ namespace StockWatcher.Services.Services
 
             return new SuccessResponse();
         }
+
+        public async Task<bool> AuthenticateAsync(string username, string password)
+        {
+            var results = await _dbService.QueryAsync<UserGet, dynamic>(StoredProcedures.UserGetByEmail,
+                new { Email = username });
+
+            if (!results.Any())
+                return false;
+
+            var user = results.First();
+
+            var isMatch = Crypto.VerifyHashedPassword(user.Password, password);
+
+            return isMatch;
+        }
     }
 }

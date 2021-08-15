@@ -2,5 +2,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../CustomControls/TextInputWithValidation.xaml" />
         <ResourceDictionary Source="../CustomControls/PasswordInputWithValidation.xaml" />
+        <ResourceDictionary Source="../CustomControls/ErrorLabel.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 using StockWatcher.Pages;
 using StockWatcher.Services.Interfaces;
 
@@ -25,6 +27,13 @@ namespace StockWatcher.Services
             var createAccountPage = new CreateAccountPage();
 
             Navigate(createAccountPage);
+        }
+
+        public void NavigateToMain()
+        {
+            var mainPage = new MainPage();
+
+            Navigate(mainPage);
         }
 
         private void Navigate(Page page)

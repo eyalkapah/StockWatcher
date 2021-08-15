@@ -6,5 +6,6 @@
 
         void NavigateToLogin();
         void NavigateToCreateAccount();
+        void NavigateToMain();
     }
 }

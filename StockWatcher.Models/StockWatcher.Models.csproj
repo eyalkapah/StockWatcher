@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="Database\User\UserCreate.cs" />
+    <Compile Include="Database\User\UserGet.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
     <Compile Include="Models\Response\IResponse.cs" />
     <Compile Include="Models\Response\SuccessResponse.cs" />

@@ -12,6 +12,7 @@ namespace StockWatcher.ViewModels.ViewModels
     public class CreateAccountViewModel : ObservableObject
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly INavigationService _navigationService;
         private Account _account;
 
         private string _emailErrorMessage;
@@ -69,16 +70,24 @@ namespace StockWatcher.ViewModels.ViewModels
         }
 
         public ICommand RegisterCommand { get; set; }
+        public ICommand NavigateToSignInPageCommand { get; set; }
 
         // C'tor
         //
-        public CreateAccountViewModel(IAuthenticationService authenticationService)
+        public CreateAccountViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
         {
             _authenticationService = authenticationService;
+            _navigationService = navigationService;
 
             Account = new Account();
 
             RegisterCommand = new RelayCommand(Register);
+            NavigateToSignInPageCommand = new RelayCommand(NavigateToSignInPage);
+        }
+
+        private void NavigateToSignInPage()
+        {
+            _navigationService.NavigateToLogin();
         }
 
         private async void Register()
@@ -101,6 +110,10 @@ namespace StockWatcher.ViewModels.ViewModels
                 if (!response.IsSuccess())
                 {
                     ErrorMessage = response.Message;
+                }
+                else
+                {
+                    _navigationService.NavigateToLogin();
                 }
             }
             else

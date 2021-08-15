@@ -7,5 +7,6 @@ namespace StockWatcher.Services.Interfaces
     public interface IAuthenticationService
     {
         Task<IResponse> RegisterAsync(Account account);
+        Task<bool> AuthenticateAsync(string username, string password);
     }
 }
