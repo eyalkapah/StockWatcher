@@ -54,6 +54,8 @@
     <Compile Include="Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\DbService.cs" />
+    <Compile Include="Interfaces\IStockService.cs" />
+    <Compile Include="Services\StockService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\TextService.cs" />
   </ItemGroup>

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Dapper;
+﻿using Dapper;
+using StockWatcher.Models.Models.DbResponse;
 using StockWatcher.Services.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace StockWatcher.Services.Services
@@ -18,17 +18,40 @@ namespace StockWatcher.Services.Services
             _connectionString = connectionString;
         }
 
-        public async Task ExecuteAsync<T>(string storedProcedure, T parameters)
+        public async Task<IDbResponse> ExecuteAsync<T>(string storedProcedure, T parameters)
         {
+            IDbResponse response;
+
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(storedProcedure, parameters,
-                    commandType: CommandType.StoredProcedure);
+                try
+                {
+                    var affectedRows = await connection.ExecuteAsync(storedProcedure, parameters,
+                        commandType: CommandType.StoredProcedure);
+
+                    response = new DbSuccessResponse<object>
+                    {
+                        RowsAffected = affectedRows
+                    };
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+
+                    response = new DbErrorResponse
+                    {
+                        Message = ex.Message
+                    };
+                }
             }
+
+            return response;
         }
 
-        public async Task<List<T>> QueryAsync<T, U>(string storedProcedure, U parameters)
+        public async Task<IDbResponse> QueryAsync<T, U>(string storedProcedure, U parameters)
         {
+            IDbResponse response;
+
             using (var connection = new SqlConnection(_connectionString))
             {
                 try
@@ -36,12 +59,19 @@ namespace StockWatcher.Services.Services
                     var result = await connection.QueryAsync<T>(storedProcedure, parameters,
                         commandType: CommandType.StoredProcedure);
 
-                    return result.ToList();
+                    return new DbSuccessResponse<IEnumerable<T>>
+                    {
+                        Result = result,
+                    };
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Console.WriteLine(e);
-                    return null;
+                    Console.WriteLine(ex);
+
+                    return new DbErrorResponse
+                    {
+                        Message = ex.Message
+                    };
                 }
                
             }

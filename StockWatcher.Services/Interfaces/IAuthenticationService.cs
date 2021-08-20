@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using StockWatcher.Models;
+using StockWatcher.Models.Models;
 using StockWatcher.Models.Models.Response;
 
 namespace StockWatcher.Services.Interfaces
@@ -8,5 +9,6 @@ namespace StockWatcher.Services.Interfaces
     {
         Task<IResponse> RegisterAsync(Account account);
         Task<bool> AuthenticateAsync(string username, string password);
+        AuthenticatedUser GetAuthenticatedUser();
     }
 }

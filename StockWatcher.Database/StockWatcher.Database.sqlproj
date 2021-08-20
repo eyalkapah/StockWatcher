@@ -66,6 +66,9 @@
     <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Stored Procedures\spUsersInsert.sql" />
     <Build Include="dbo\Stored Procedures\spUserGetByEmail.sql" />
+    <Build Include="dbo\Tables\UserStocks.sql" />
+    <Build Include="dbo\Stored Procedures\spUserStocksGetStocksByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\spUserStocksInsertStock.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\StockWatcher.Database.publish.xml" />

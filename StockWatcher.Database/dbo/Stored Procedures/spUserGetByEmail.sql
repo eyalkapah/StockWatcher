@@ -3,7 +3,7 @@
 AS
 BEGIN
 	SET NOCOUNT ON;
-	SELECT [Email], [Password], [FirstName], [LastName]
+	SELECT [Id], [Email], [Password], [FirstName], [LastName]
 	FROM dbo.Users
 	WHERE Email = @Email;
 

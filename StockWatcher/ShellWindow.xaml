@@ -11,6 +11,18 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=Shell}"
     mc:Ignorable="d">
     <Grid>
-        <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Frame
+            x:Name="ContentFrame"
+            Grid.Row="1"
+            NavigationUIVisibility="Hidden" />
+        <StatusBar
+            x:Name="StatusBar"
+            Grid.Row="2"
+            Height="30" />
     </Grid>
 </Window>

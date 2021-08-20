@@ -34,6 +34,8 @@ namespace StockWatcher.ViewModels.ViewModels
         //
         public LoginViewModel(INavigationService navigationService, IAuthenticationService authenticationService)
         {
+            Username = "kaycee1@gmail.com";
+
             _navigationService = navigationService;
             _authenticationService = authenticationService;
 
