@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using YahooFinance.Contracts;
 using YahooFinance.Enums;
 using YahooFinance.Extensions;
 using YahooFinance.Helpers;
-using YahooFinance.Models;
 
 namespace YahooFinance
 {
@@ -34,7 +32,7 @@ namespace YahooFinance
         //    return list;
         //}
 
-        public async Task<IOrderedEnumerable<FormattedQuote>> GetHistoricalDataAsync(string symbol, int numOfDays)
+        public async Task<HistoricalData> GetHistoricalDataAsync(string symbol, int numOfDays)
         {
             var result = await GetHistoricalDataAsync(
                 symbol, 
@@ -43,7 +41,7 @@ namespace YahooFinance
                 Interval.OneDay, 
                 true);
 
-            return result.ToFormattedQuote().TakeLastOf(numOfDays).OrderBy(c => c.TimeStamp);
+            return result;
         }
 
         public async Task<HistoricalData> GetHistoricalDataAsync(
@@ -97,82 +95,34 @@ namespace YahooFinance
             return profile;
         }
 
-        //public async Task<FundamentalData> GetFundamentalDataAsync(string symbol, bool assetProfile,
-        //    bool recommendationTrend, bool cashflowStatementHistory,
-        //    bool indexTrend, bool defaultKeyStatistics, bool industryTrend, bool incomeStatementHistory,
-        //    bool fundOwnership, bool summaryDetail, bool insiderHolders, bool calendarEvents,
-        //    bool upgradeDowngradeHistory, bool price,
-        //    bool earningsTrend, bool secFilings, bool institutionOwnership, bool majorHoldersBreakdown,
-        //    bool balanceSheetHistory, bool majorDirectHolders, bool esgScores,
-        //    bool summaryProfile, bool netSharePurchaseActivity, bool insiderTransactions,
-        //    bool incomeStatementHistoryQuarterly, bool cashflowStatementHistoryQuarterly,
-        //    bool financialData)
-        //{
-        //    var builder = new List<string>();
+        public async Task<SummaryDetails> GetSummaryDetailsAsync(string symbol)
+        {
+            var modules = new List<string> { "summaryDetail" };
 
-        //    builder.AddModule(nameof(assetProfile), assetProfile);
-        //    builder.AddModule(nameof(recommendationTrend), recommendationTrend);
-        //    builder.AddModule(nameof(cashflowStatementHistory), cashflowStatementHistory);
-        //    builder.AddModule(nameof(indexTrend), indexTrend);
-        //    builder.AddModule(nameof(defaultKeyStatistics), defaultKeyStatistics);
-        //    builder.AddModule(nameof(industryTrend), industryTrend);
-        //    builder.AddModule(nameof(incomeStatementHistory), incomeStatementHistory);
-        //    builder.AddModule(nameof(fundOwnership), fundOwnership);
-        //    builder.AddModule(nameof(summaryDetail), summaryDetail);
-        //    builder.AddModule(nameof(insiderHolders), insiderHolders);
-        //    builder.AddModule(nameof(calendarEvents), calendarEvents);
-        //    builder.AddModule(nameof(upgradeDowngradeHistory), upgradeDowngradeHistory);
-        //    builder.AddModule(nameof(price), price);
-        //    builder.AddModule(nameof(earningsTrend), earningsTrend);
-        //    builder.AddModule(nameof(secFilings), secFilings);
-        //    builder.AddModule(nameof(institutionOwnership), institutionOwnership);
-        //    builder.AddModule(nameof(majorHoldersBreakdown), majorHoldersBreakdown);
-        //    builder.AddModule(nameof(balanceSheetHistory), balanceSheetHistory);
-        //    builder.AddModule(nameof(majorDirectHolders), majorDirectHolders);
-        //    builder.AddModule(nameof(esgScores), esgScores);
-        //    builder.AddModule(nameof(summaryProfile), summaryProfile);
-        //    builder.AddModule(nameof(netSharePurchaseActivity), netSharePurchaseActivity);
-        //    builder.AddModule(nameof(insiderTransactions), insiderTransactions);
-        //    builder.AddModule(nameof(incomeStatementHistoryQuarterly), incomeStatementHistoryQuarterly);
-        //    builder.AddModule(nameof(cashflowStatementHistoryQuarterly), cashflowStatementHistoryQuarterly);
-        //    builder.AddModule(nameof(financialData), financialData);
+            var modulesString = string.Join(",", modules);
 
-        //    var modules = string.Join(",", builder);
+            var url = $"{symbol}?modules={modulesString}";
 
-        //    var url = $"{symbol}?modules={modules}";
+            var response = await _client.GetV10Client(url);
 
-        //    var response = await _client.GetV10Client(url);
+            var json = await response.Content.ReadAsStringAsync();
 
-        //    var json = await response.Content.ReadAsStringAsync();
+            var summaryDetails = JsonSerializer.Deserialize<SummaryDetails>(json);
 
-        //    var contract = JsonSerializer.Deserialize<FundamentalDataContract>(json);
+            return summaryDetails;
+        }
+        
+        public async Task<HistoricalData> GetHistoricalDataAsync(string symbol)
+        {
+            var url = $"{symbol}?symbol={symbol}";
 
-        //    return contract.GetFundamentalData();
-        //}
+            var response = await _client.HttpGetClientYahoo(url);
 
-        //public async Task<Options> GetOptionsContractAsync(string symbol, DateTime date)
-        //{
-        //    var url = symbol;
+            var json = await response.Content.ReadAsStringAsync();
 
-        //    var epochTime = decimal.MinValue;
+            var data = JsonSerializer.Deserialize<HistoricalData>(json);
 
-        //    if (date > DateTime.Now.Date)
-        //    {
-        //        epochTime = date.ToUnixTimeSeconds();
-        //    }
-
-        //    if (epochTime != long.MinValue)
-        //    {
-        //        url = $"{url}?date={epochTime}";
-        //    }
-
-        //    var response = await _client.GetV7Client(url);
-
-        //    var json = await response.Content.ReadAsStringAsync();
-
-        //    var contract = JsonSerializer.Deserialize<OptionsContract>(json);
-
-        //    return contract.GetOptions();
-        //}
+            return data;
+        }
     }
 }

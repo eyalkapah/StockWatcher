@@ -3,4 +3,5 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:StockWatcher.Converters">
     <converters:GeneralToVisibilityConverter x:Key="GeneralToVisibilityConverter" />
+    <converters:TrendColorConverter x:Key="TrendColorConverter" />
 </ResourceDictionary>

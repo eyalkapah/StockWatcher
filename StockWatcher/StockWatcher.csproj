@@ -139,11 +139,11 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.5.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.5.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -172,6 +172,7 @@
     <Compile Include="Configurations\ServicesInstaller.cs" />
     <Compile Include="Configurations\ViewModelsInstaller.cs" />
     <Compile Include="Converters\GeneralToVisibilityConverter.cs" />
+    <Compile Include="Converters\TrendColorConverter.cs" />
     <Compile Include="CustomControls\ErrorLabel.cs" />
     <Compile Include="CustomControls\PasswordInputWithValidation.cs" />
     <Compile Include="CustomControls\TextInputWithValidation.cs" />
@@ -299,6 +300,10 @@
     <ProjectReference Include="..\StockWatcher.Views\StockWatcher.Views.csproj">
       <Project>{d6110065-167a-46ff-848d-44afa1505f7b}</Project>
       <Name>StockWatcher.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YahooFinance\YahooFinance.csproj">
+      <Project>{28163D21-BC8A-4EF4-9E2E-354CE72EE8AF}</Project>
+      <Name>YahooFinance</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

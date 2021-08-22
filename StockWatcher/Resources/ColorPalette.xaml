@@ -6,6 +6,10 @@
     <Color x:Key="Red">Red</Color>
     <Color x:Key="DarkRed">DarkRed</Color>
     <Color x:Key="IndianRed">IndianRed</Color>
+    <Color x:Key="UpGreenColor">#44B2A8</Color>
+    <Color x:Key="DownRedColor">#F44336</Color>
+    <Color x:Key="VeryLightGray">#F0F3FA</Color>
+    <Color x:Key="MouseGray">#D1D4DC</Color>
 
 
     <SolidColorBrush x:Key="OuterBorderBrush" Color="{StaticResource LightGray}" />
@@ -14,4 +18,8 @@
     <SolidColorBrush x:Key="ErrorTextBrush" Color="{StaticResource Red}" />
     <SolidColorBrush x:Key="ErrorTextBackgroundBrush" Color="{StaticResource IndianRed}" />
     <SolidColorBrush x:Key="ErrorTextBorderBrush" Color="{StaticResource DarkRed}" />
+    <SolidColorBrush x:Key="UpGreenBrush" Color="{StaticResource UpGreenColor}" />
+    <SolidColorBrush x:Key="DownRedBrush" Color="{StaticResource DownRedColor}" />
+    <SolidColorBrush x:Key="RowBorderBrush" Color="{StaticResource VeryLightGray}" />
+    <SolidColorBrush x:Key="HeadersBrush" Color="{StaticResource MouseGray}" />
 </ResourceDictionary>

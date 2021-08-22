@@ -24,5 +24,10 @@ namespace StockWatcher.Pages
         {
             InitializeComponent();
         }
+
+        private void LastNameCM_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

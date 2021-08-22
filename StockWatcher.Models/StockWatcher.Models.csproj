@@ -76,10 +76,14 @@
     <Compile Include="Database\User\UserCreate.cs" />
     <Compile Include="Database\User\UserGet.cs" />
     <Compile Include="Exceptions\UnauthenticatedUserException.cs" />
+    <Compile Include="Extensions\ContractExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\DbResponse\DbErrorResponse.cs" />
     <Compile Include="Models\DbResponse\IDbResponse.cs" />
     <Compile Include="Models\DbResponse\DbSuccessResponse.cs" />
+    <Compile Include="Models\Models\FormattedHistoricalData.cs" />
+    <Compile Include="Models\Models\FormattedQuote.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
     <Compile Include="Models\Response\IResponse.cs" />
     <Compile Include="Models\Response\SuccessResponse.cs" />
@@ -91,6 +95,10 @@
     <ProjectReference Include="..\StockWatcher.Common\StockWatcher.Common.csproj">
       <Project>{914ca372-084d-4849-95e3-e7cddac397da}</Project>
       <Name>StockWatcher.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YahooFinance\YahooFinance.csproj">
+      <Project>{28163D21-BC8A-4EF4-9E2E-354CE72EE8AF}</Project>
+      <Name>YahooFinance</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

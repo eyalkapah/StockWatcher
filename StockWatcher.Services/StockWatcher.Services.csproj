@@ -68,6 +68,10 @@
       <Project>{68087DA3-0E32-4904-BC9B-A8DC15FD45CF}</Project>
       <Name>StockWatcher.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YahooFinance\YahooFinance.csproj">
+      <Project>{28163D21-BC8A-4EF4-9E2E-354CE72EE8AF}</Project>
+      <Name>YahooFinance</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

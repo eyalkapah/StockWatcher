@@ -5,6 +5,7 @@ using StockWatcher.Models.Settings;
 using StockWatcher.Services;
 using StockWatcher.Services.Interfaces;
 using StockWatcher.Services.Services;
+using YahooFinance;
 
 namespace StockWatcher.Configurations
 {
@@ -16,6 +17,7 @@ namespace StockWatcher.Configurations
                 .AddSingleton<INavigationService, NavigationService>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IDbService, DbService>()
+                .AddSingleton<IYahooService, YahooService>()
                 .AddSingleton<IStockService, StockService>();
 
         }

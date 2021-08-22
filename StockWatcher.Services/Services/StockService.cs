@@ -1,9 +1,17 @@
-﻿using StockWatcher.Common;
+﻿using System;
+using StockWatcher.Common;
 using StockWatcher.Models.Exceptions;
 using StockWatcher.Models.Models.DbResponse;
 using StockWatcher.Services.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using StockWatcher.Models.Extensions;
+using StockWatcher.Models.Models.Models;
+using YahooFinance;
+using YahooFinance.Contracts;
+using YahooFinance.Enums;
+using YahooFinance.Extensions;
 
 namespace StockWatcher.Services.Services
 {
@@ -11,11 +19,13 @@ namespace StockWatcher.Services.Services
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IDbService _dbService;
+        private readonly IYahooService _yahooService;
 
-        public StockService(IAuthenticationService authenticationService, IDbService dbService)
+        public StockService(IAuthenticationService authenticationService, IDbService dbService, IYahooService yahooService)
         {
             _authenticationService = authenticationService;
             _dbService = dbService;
+            _yahooService = yahooService;
         }
 
         public async Task<IEnumerable<string>> GetUserStocks()
@@ -57,6 +67,55 @@ namespace StockWatcher.Services.Services
                 return false;
 
             return true;
+        }
+
+        public async Task<bool> DeleteStockAsync(string ticker)
+        {
+            
+            var authenticatedUser = _authenticationService.GetAuthenticatedUser();
+
+            if (authenticatedUser == null)
+            {
+                throw new UnauthenticatedUserException();
+            }
+
+            var response = await _dbService.ExecuteAsync(StoredProcedures.UserStocksDeleteStock, new
+            {
+                UserId = authenticatedUser.Id,
+                Ticker = ticker
+            });
+
+            if (response is DbErrorResponse errorResponse)
+                return false;
+
+            return true;
+        }
+
+
+        public async Task<FormattedHistoricalData> GetHistoricalDataAsync(string symbol)
+        {
+            var data = await _yahooService.GetHistoricalDataAsync(symbol);
+
+            var formattedDetails = new FormattedHistoricalData
+            {
+                Last = (decimal)data.Chart.Result[0].Meta.RegularMarketPrice,
+                PreviousClose = (decimal)data.Chart.Result[0].Meta.ChartPreviousClose,
+                Quotes = data.ToFormattedQuote()
+            };
+            
+            return formattedDetails;
+        }
+
+        public async Task<IOrderedEnumerable<FormattedQuote>> GetHistoricalDataAsync(string symbol, int numOfDays)
+        {
+            var result = await _yahooService.GetHistoricalDataAsync(
+                symbol, 
+                DateTime.Now.AddDays(-2 * numOfDays),
+                DateTime.Now, 
+                Interval.OneDay, 
+                true);
+
+            return result.ToFormattedQuote().TakeLastOf(numOfDays).OrderBy(c => c.TimeStamp);
         }
     }
 }

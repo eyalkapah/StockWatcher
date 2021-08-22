@@ -5,16 +5,44 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:StockWatcher.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:StockWatcher.ViewModels.ViewModels;assembly=StockWatcher.ViewModels"
     Title="MainPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border
+                            Background="Transparent"
+                            BorderBrush="{StaticResource RowBorderBrush}"
+                            BorderThickness="0,0,0,1">
+                            <TextBlock
+                                x:Name="ContentHeader"
+                                Width="{TemplateBinding Width}"
+                                Padding="8,8,0,8"
+                                FontSize="14"
+                                Text="{TemplateBinding Content}"
+                                TextAlignment="Center" />
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </Page.Resources>
 
     <Grid Margin="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*" />
-            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="0.75*" />
         </Grid.ColumnDefinitions>
 
         <Grid>
@@ -46,47 +74,82 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                ItemsSource="{Binding Tickers}">
+                BorderBrush="{StaticResource RowBorderBrush}"
+                ItemsSource="{Binding Tickers}"
+                SelectedItem="{Binding SelectedStock}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="BorderBrush" Value="{StaticResource RowBorderBrush}" />
+                        <Setter Property="BorderThickness" Value="0,0,0,1" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-                <!--<ListView.View>
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding RemoveStockCommand}" Header="Remove" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.View>
 
-                        <GridViewColumn
-                            Width="100"
-                            DisplayMemberBinding="{Binding Path=Symbol}"
-                            Header="Symbol" />
+                    <GridView AllowsColumnReorder="true" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
 
-                -->
-                <!--<GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=LastName}">
-                            <GridViewColumnHeader>
-                                Last Name
-                                <GridViewColumnHeader.ContextMenu>
-                                    <ContextMenu Name="LastNameCM" MenuItem.Click="LastNameCM_Click">
-                                        <MenuItem Header="Ascending" />
-                                        <MenuItem Header="Descending" />
-                                    </ContextMenu>
-                                </GridViewColumnHeader.ContextMenu>
-                            </GridViewColumnHeader>
-                        </GridViewColumn>-->
-                <!--
+                        <GridViewColumn Width="80" Header="Symbol">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Padding="8,8,0,8"
+                                        Style="{StaticResource BodyTextBlockStyle}"
+                                        Text="{Binding Path=Ticker}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                        <GridViewColumn
-                            Width="100"
-                            DisplayMemberBinding="{Binding Path=Last}"
-                            Header="Last" />
 
-                        <GridViewColumn
-                            Width="100"
-                            DisplayMemberBinding="{Binding Path=Change}"
-                            Header="Chg" />
+                        <GridViewColumn Width="75" Header="Last">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="viewModels:StockViewModel">
+                                    <TextBlock
+                                        Padding="8,8,0,8"
+                                        HorizontalAlignment="Right"
+                                        Foreground="{Binding Change, Converter={StaticResource TrendColorConverter}}"
+                                        Style="{StaticResource BodyTextBlockStyle}"
+                                        Text="{Binding Path=Last, StringFormat={}{0:#.00}}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                        <GridViewColumn
-                            Width="100"
-                            DisplayMemberBinding="{Binding Path=ChangeP}"
-                            Header="Chg%" />
+                        <GridViewColumn Width="75" Header="Chg">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="viewModels:StockViewModel">
+                                    <DockPanel>
+                                        <TextBlock
+                                            Padding="8,8,0,8"
+                                            HorizontalAlignment="Right"
+                                            DockPanel.Dock="Right"
+                                            Foreground="{Binding Change, Converter={StaticResource TrendColorConverter}}"
+                                            Style="{StaticResource BodyTextBlockStyle}"
+                                            Text="{Binding Path=Change, StringFormat={}{0:#0.00}}" />
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="75" Header="Chg%">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="viewModels:StockViewModel">
+                                    <TextBlock
+                                        Padding="8,8,0,8"
+                                        HorizontalAlignment="Right"
+                                        Foreground="{Binding Change, Converter={StaticResource TrendColorConverter}}"
+                                        Style="{StaticResource BodyTextBlockStyle}"
+                                        Text="{Binding Path=ChangePercentage, StringFormat={}{0:#.00}%}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
 
-                </ListView.View>-->
+                </ListView.View>
             </ListView>
         </Grid>
     </Grid>

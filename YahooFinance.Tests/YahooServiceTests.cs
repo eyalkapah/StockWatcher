@@ -38,8 +38,49 @@ namespace YahooFinance.Tests
             // assert
             Assert.IsNotNull(data);
 
-            Assert.AreEqual(numOfDays, data.ToList().Count);
+            //Assert.AreEqual(numOfDays, data.ToList().Count);
         }
 
+        [TestMethod]
+        [DataRow("MSFT")]
+        public void GetSummaryDetailsTest(string symbol)
+        {
+            // arrange
+            var service = new YahooService();
+
+            // test
+            var data = service.GetSummaryDetailsAsync(symbol).Result;
+
+            // assert
+            Assert.IsNotNull(data);
+        }
+
+        [TestMethod]
+        [DataRow("MSFT")]
+        public void GetGenericHistoricalDataTest(string symbol)
+        {
+            // arrange
+            var service = new YahooService();
+
+            // test
+            var data = service.GetHistoricalDataAsync(symbol).Result;
+
+            // assert
+            Assert.IsNotNull(data);
+        }
+
+        [TestMethod]
+        [DataRow("MSFT")]
+        public void GetHistoricalSummaryDetails(string symbol)
+        {
+            // arrange
+            var service = new YahooService();
+
+            // test
+            var data = service.GetHistoricalDataAsync(symbol).Result;
+
+            // assert
+            Assert.IsNotNull(data);
+        }
     }
 }

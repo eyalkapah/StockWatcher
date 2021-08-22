@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StockWatcher.Models.Models.Models;
 using YahooFinance.Contracts;
-using YahooFinance.Models;
 
-namespace YahooFinance.Extensions
+namespace StockWatcher.Models.Extensions
 {
     public static class ContractExtensions
     {

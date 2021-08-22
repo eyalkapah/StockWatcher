@@ -69,6 +69,7 @@
     <Build Include="dbo\Tables\UserStocks.sql" />
     <Build Include="dbo\Stored Procedures\spUserStocksGetStocksByUserId.sql" />
     <Build Include="dbo\Stored Procedures\spUserStocksInsertStock.sql" />
+    <Build Include="dbo\Stored Procedures\spUserStocksDeleteStock.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\StockWatcher.Database.publish.xml" />

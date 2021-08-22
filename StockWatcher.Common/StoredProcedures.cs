@@ -6,5 +6,6 @@
         public const string UserGetByEmail = "dbo.spUserGetByEmail";
         public const string UserStocksGetStocksByUserId = "dbo.spUserStocksGetStocksByUserId";
         public const string UserStocksInsertStock = "dbo.spUserStocksInsertStock";
+        public static string UserStocksDeleteStock = "dbo.spUserStocksDeleteStock";
     }
 }

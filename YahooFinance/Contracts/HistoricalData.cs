@@ -149,19 +149,19 @@ namespace YahooFinance.Contracts
     public class Quote
     {
         [JsonPropertyName("high")]
-        public float[] High { get; set; }
+        public float?[] High { get; set; }
 
         [JsonPropertyName("low")]
-        public float[] Low { get; set; }
+        public float?[] Low { get; set; }
 
         [JsonPropertyName("close")]
-        public float[] Close { get; set; }
+        public float?[] Close { get; set; }
 
         [JsonPropertyName("volume")]
-        public int[] Volume { get; set; }
+        public int?[] Volume { get; set; }
 
         [JsonPropertyName("open")]
-        public float[] Open { get; set; }
+        public float?[] Open { get; set; }
     }
 
     public class AdjClose
