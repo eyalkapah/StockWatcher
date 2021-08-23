@@ -46,6 +46,16 @@
         <StatusBar
             x:Name="StatusBar"
             Grid.Row="2"
-            Height="30" />
+            Height="30"
+            DataContext="{Binding Source={StaticResource Locator}, Path=StatusBar}">
+            <StackPanel Orientation="Horizontal">
+                <Image
+                    Width="16"
+                    Height="16"
+                    Margin="4,0"
+                    Source="{Binding ImageSource, Converter={StaticResource StringToResourceConverter}}" />
+                <TextBlock Margin="4,0" Text="{Binding Text}" />
+            </StackPanel>
+        </StatusBar>
     </Grid>
 </Window>

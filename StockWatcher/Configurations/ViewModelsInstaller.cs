@@ -11,6 +11,7 @@ namespace StockWatcher.Configurations
                 .AddTransient<MainWindowViewModel>()
                 .AddTransient<LoginViewModel>()
                 .AddTransient<CreateAccountViewModel>()
+                .AddTransient<StatusBarViewModel>()
                 .AddTransient<ShellViewModel>();
         }
     }

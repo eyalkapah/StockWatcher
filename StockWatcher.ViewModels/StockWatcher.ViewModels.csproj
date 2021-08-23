@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\StockViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
   </ItemGroup>

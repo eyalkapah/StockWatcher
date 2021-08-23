@@ -1,7 +1,7 @@
 ﻿using System;
 using StockWatcher.Models.Extensions;
 
-namespace StockWatcher.Models.Models.Models
+namespace StockWatcher.Models.Models.Models.ServiceProvidersEntities
 {
     public class FormattedQuote
     {

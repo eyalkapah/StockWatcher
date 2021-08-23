@@ -10,6 +10,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using StockWatcher.Models.Enums;
+using StockWatcher.Models.Messages;
+using StockWatcher.Models.Models.Models.ServiceProvidersEntities;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
@@ -174,6 +178,12 @@ namespace StockWatcher.ViewModels.ViewModels
                 }
 
             }
+
+            WeakReferenceMessenger.Default.Send(new StatusBarMessage(new StatusBarMessageInput
+            {
+                StatusBarMessageType = StatusBarMessageType.Sync,
+                Message = $"Sync time: {DateTime.Now}"
+            }));
         }
 
         private async void AddTickerAsync()

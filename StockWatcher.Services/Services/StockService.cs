@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using StockWatcher.Models.Extensions;
 using StockWatcher.Models.Factories.Yahoo;
 using StockWatcher.Models.Models.Models;
+using StockWatcher.Models.Models.Models.ServiceProvidersEntities;
 using YahooFinance;
 using YahooFinance.Contracts;
 using YahooFinance.Enums;

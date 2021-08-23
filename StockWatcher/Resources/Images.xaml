@@ -1,0 +1,4 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  https://www.flaticon.com/free-icon/cloud-sync_1069941?term=sync&page=1&position=7&page=1&position=7&related_id=1069941&origin=tag  -->
+    <BitmapImage x:Key="SyncImage" UriSource="../Assets/Images/sync.png" />
+</ResourceDictionary>

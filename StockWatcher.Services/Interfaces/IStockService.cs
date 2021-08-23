@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using StockWatcher.Models.Models.Models;
+using StockWatcher.Models.Models.Models.ServiceProvidersEntities;
 
 namespace StockWatcher.Services.Interfaces
 {

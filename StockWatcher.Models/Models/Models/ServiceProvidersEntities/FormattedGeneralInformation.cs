@@ -1,4 +1,4 @@
-﻿namespace StockWatcher.Models.Models.Models
+﻿namespace StockWatcher.Models.Models.Models.ServiceProvidersEntities
 {
     public class FormattedGeneralInformation
     {

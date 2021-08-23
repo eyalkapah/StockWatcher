@@ -188,6 +188,7 @@
     <Compile Include="Configurations\ViewModelsInstaller.cs" />
     <Compile Include="Converters\GeneralToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToResourceConverter.cs" />
     <Compile Include="Converters\TrendColorConverter.cs" />
     <Compile Include="CustomControls\ErrorLabel.cs" />
     <Compile Include="CustomControls\PasswordInputWithValidation.cs" />
@@ -221,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Images.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +303,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Assets\Images\sync.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

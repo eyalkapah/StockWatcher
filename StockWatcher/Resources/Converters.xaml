@@ -6,4 +6,5 @@
     <converters:TrendColorConverter x:Key="TrendColorConverter" />
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityInverseConverter" Inverse="True" />
+    <converters:StringToResourceConverter x:Key="StringToResourceConverter" />
 </ResourceDictionary>

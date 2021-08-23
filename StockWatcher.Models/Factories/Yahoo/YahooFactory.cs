@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockWatcher.Models.Models.Models.ServiceProvidersEntities;
 using YahooFinance.Contracts;
 
 namespace StockWatcher.Models.Factories.Yahoo

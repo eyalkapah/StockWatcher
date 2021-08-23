@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using StockWatcher.Models.Models.Models;
+using StockWatcher.Models.Models.Models.ServiceProvidersEntities;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
