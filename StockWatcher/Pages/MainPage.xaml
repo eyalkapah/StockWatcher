@@ -5,45 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fancyCandles="clr-namespace:FancyCandles;assembly=FancyCandles"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="clr-namespace:StockWatcher.ViewModels.ViewModels;assembly=StockWatcher.ViewModels"
+    xmlns:userControls="clr-namespace:StockWatcher.UserControls"
     Title="MainPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{StaticResource HeadersBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     mc:Ignorable="d">
-    <Page.Resources>
-        <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="FontWeight" Value="Bold" />
-        </Style>
-
-        <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                        <Border
-                            Background="Transparent"
-                            BorderBrush="{StaticResource RowBorderBrush}"
-                            BorderThickness="0,0,0,1">
-                            <TextBlock
-                                x:Name="ContentHeader"
-                                Width="{TemplateBinding Width}"
-                                Padding="8,8,0,8"
-                                FontSize="14"
-                                Text="{TemplateBinding Content}"
-                                TextAlignment="Center" />
-
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontFamily" Value="Segoe UI" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-    </Page.Resources>
 
 
     <Grid Margin="4">
@@ -56,7 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.8*" />
@@ -78,170 +46,22 @@
                 Content="Add"
                 IsEnabled="{Binding CanAddTicker, Mode=OneWay}" />
 
-            <ListView
+            <!--  Stock List  -->
+            <userControls:StockListUserControl
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Margin="0,0,0,4"
-                BorderBrush="{StaticResource RowBorderBrush}"
-                ItemsSource="{Binding Tickers}"
-                SelectedItem="{Binding SelectedStock}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="BorderBrush" Value="{StaticResource RowBorderBrush}" />
-                        <Setter Property="BorderThickness" Value="0,0,0,1" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Command="{Binding RemoveStockCommand}" Header="Remove" />
-                    </ContextMenu>
-                </ListView.ContextMenu>
-                <ListView.View>
-
-                    <GridView AllowsColumnReorder="true" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-
-                        <GridViewColumn Width="80" Header="Symbol">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                        Padding="8,8,0,8"
-                                        Style="{StaticResource BodyTextBlockStyle}"
-                                        Text="{Binding Path=Ticker}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                ViewModel="{Binding}" />
 
 
-                        <GridViewColumn Width="75" Header="Last">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate DataType="viewModels:StockViewModel">
-                                    <TextBlock
-                                        Padding="8,8,0,8"
-                                        HorizontalAlignment="Right"
-                                        Foreground="{Binding GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
-                                        Style="{StaticResource BodyTextBlockStyle}"
-                                        Text="{Binding Path=GeneralInformation.RegularMarketPrice.Format}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="75" Header="Chg">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate DataType="viewModels:StockViewModel">
-                                    <DockPanel>
-                                        <TextBlock
-                                            Padding="8,8,0,8"
-                                            HorizontalAlignment="Right"
-                                            DockPanel.Dock="Right"
-                                            Foreground="{Binding GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
-                                            Style="{StaticResource BodyTextBlockStyle}"
-                                            Text="{Binding Path=GeneralInformation.RegularMarketChange.Format}" />
-                                    </DockPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="75" Header="Chg%">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate DataType="viewModels:StockViewModel">
-                                    <TextBlock
-                                        Padding="8,8,0,8"
-                                        HorizontalAlignment="Right"
-                                        Foreground="{Binding GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
-                                        Style="{StaticResource BodyTextBlockStyle}"
-                                        Text="{Binding Path=GeneralInformation.RegularMarketChangePercent.Format}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-
-                </ListView.View>
-            </ListView>
-
-            <Grid
+            <!--  Price Panel  -->
+            <userControls:PriceUserControl
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Background="{StaticResource FrameBackgroundBrush}">
-
-                <StackPanel Margin="8">
-                    <TextBlock
-                        FontWeight="SemiBold"
-                        Style="{StaticResource BodyTextBlockStyle}"
-                        Text="{Binding SelectedStock.Ticker}" />
-
-                    <TextBlock
-                        Margin="0,8,0,0"
-                        Style="{StaticResource SmallBodyTextBlockStyle}"
-                        Text="{Binding SelectedStock.GeneralInformation.ShortName}" />
-                    <TextBlock
-                        Margin="0,4"
-                        Foreground="{StaticResource HeadersBrush}"
-                        Style="{StaticResource SmallBodyTextBlockStyle}"
-                        Text="{Binding SelectedStock.GeneralInformation.Sector}" />
-
-                    <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            FontWeight="SemiBold"
-                            Foreground="{Binding SelectedStock.GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
-                            Style="{StaticResource HeaderTextBlockStyle}"
-                            Text="{Binding SelectedStock.GeneralInformation.RegularMarketPrice.Format}" />
-                        <TextBlock Text=" " />
-                        <TextBlock
-                            Margin="0,4"
-                            VerticalAlignment="Bottom"
-                            Text="{Binding SelectedStock.GeneralInformation.Currency}" />
-
-                    </StackPanel>
-
-                    <TextBlock
-                        Margin="0,4"
-                        Foreground="{Binding SelectedStock.GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
-                        Style="{StaticResource SubtitleTextBlockStyle}">
-                        <Run Text="{Binding SelectedStock.GeneralInformation.RegularMarketChange.Format}" />
-                        <Run Text="(" />
-                        <Run Text="{Binding SelectedStock.GeneralInformation.RegularMarketChangePercent.Format}" />
-                        <Run Text=")" />
-                    </TextBlock>
-
-                    <TextBlock Margin="0,8" Text="{Binding SelectedStock.GeneralInformation.MarketState}" />
-
-                    <TextBlock
-                        Margin="0,8"
-                        Style="{StaticResource HeaderTextBlockStyle}"
-                        Text="Key stats" />
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Margin="0,0,0,4" Text="VOLUME" />
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Text="{Binding SelectedStock.GeneralInformation.RegularMarketVolume.Format}" />
-                        <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="0,0,0,4"
-                            Text="MARKET CAP" />
-                        <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Text="{Binding SelectedStock.GeneralInformation.MarketCap.Format}" />
-
-                    </Grid>
-                </StackPanel>
-            </Grid>
+                Background="{StaticResource FrameBackgroundBrush}"
+                SelectedStock="{Binding SelectedStock, Mode=OneWay}"
+                Visibility="{Binding SelectedStock, Converter={StaticResource NullToVisibilityConverter}}" />
 
 
         </Grid>
@@ -252,75 +72,26 @@
             Margin="8,0,0,0"
             Background="{StaticResource FrameBackgroundBrush}"
             Visibility="{Binding SelectedStock, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
-            <Grid.Resources>
-                <Style
-                    x:Key="SummaryHeaderTextBlockStyle"
-                    BasedOn="{StaticResource HeaderTextBlockStyle}"
-                    TargetType="TextBlock">
-                    <Setter Property="Margin" Value="8,8,8,0" />
-                </Style>
-            </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-
-
             <TextBlock
                 Margin="8,0"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="{Binding SelectedStock.GeneralInformation.LongName}" />
 
+            <!--  Chart  -->
             <fancyCandles:CandleChart
                 Grid.Row="1"
                 Margin="8"
                 CandlesSource="{Binding CandlesSource}" />
-            <StackPanel Grid.Row="2">
-                <TextBlock
-                    Margin="8,0"
-                    Style="{StaticResource SummaryHeaderTextBlockStyle}"
-                    Text="Industry" />
 
-                <TextBlock
-                    Margin="8,0"
-                    Style="{StaticResource BodyTextBlockStyle}"
-                    Text="{Binding SelectedStock.GeneralInformation.Industry}" />
-
-                <TextBlock Style="{StaticResource SummaryHeaderTextBlockStyle}" Text="Sector" />
-
-                <TextBlock
-                    Margin="8,0"
-                    Style="{StaticResource BodyTextBlockStyle}"
-                    Text="{Binding SelectedStock.GeneralInformation.Sector}" />
-
-                <TextBlock Style="{StaticResource SummaryHeaderTextBlockStyle}" Text="Website" />
-
-
-                <TextBlock Margin="8,0" Style="{StaticResource BodyTextBlockStyle}">
-                    <Hyperlink NavigateUri="{Binding SelectedStock.GeneralInformation.Website}">
-                        <Hyperlink.Inlines>
-                            <Run Text="{Binding SelectedStock.GeneralInformation.Website}" />
-                        </Hyperlink.Inlines>
-                    </Hyperlink>
-                </TextBlock>
-
-                <TextBlock Style="{StaticResource SummaryHeaderTextBlockStyle}" Text="Full Time Employees" />
-
-                <TextBlock
-                    Margin="8,0"
-                    Style="{StaticResource BodyTextBlockStyle}"
-                    Text="{Binding SelectedStock.GeneralInformation.FullTimeEmployees}" />
-
-                <TextBlock Style="{StaticResource SummaryHeaderTextBlockStyle}" Text="Summary" />
-
-                <TextBlock
-                    Margin="8,0"
-                    Style="{StaticResource BodyTextBlockStyle}"
-                    Text="{Binding SelectedStock.GeneralInformation.Summary}"
-                    TextWrapping="Wrap" />
-            </StackPanel>
+            <!--  Summary Profile  -->
+            <userControls:ProfileSummaryUserControl Grid.Row="2" SelectedStock="{Binding SelectedStock}" />
         </Grid>
 
     </Grid>

@@ -199,6 +199,15 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="UserControls\PriceUserControl.xaml.cs">
+      <DependentUpon>PriceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProfileSummaryUserControl.xaml.cs">
+      <DependentUpon>ProfileSummaryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StockListUserControl.xaml.cs">
+      <DependentUpon>StockListUserControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="CustomControls\ErrorLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,6 +267,18 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PriceUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ProfileSummaryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\StockListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

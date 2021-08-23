@@ -1,0 +1,119 @@
+﻿<UserControl
+    x:Class="StockWatcher.UserControls.StockListUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:StockWatcher.ViewModels.ViewModels;assembly=StockWatcher.ViewModels"
+    x:Name="StockListControl"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border
+                            Background="Transparent"
+                            BorderBrush="{StaticResource RowBorderBrush}"
+                            BorderThickness="0,0,0,1">
+                            <TextBlock
+                                x:Name="ContentHeader"
+                                Width="{TemplateBinding Width}"
+                                Padding="8,8,0,8"
+                                FontSize="14"
+                                Text="{TemplateBinding Content}"
+                                TextAlignment="Center" />
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Resources>
+    <ListView
+        Margin="0,0,0,4"
+        BorderBrush="{StaticResource RowBorderBrush}"
+        DataContext="{Binding ElementName=StockListControl, Path=ViewModel}"
+        ItemsSource="{Binding Tickers}"
+        SelectedItem="{Binding SelectedStock}">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="BorderBrush" Value="{StaticResource RowBorderBrush}" />
+                <Setter Property="BorderThickness" Value="0,0,0,1" />
+            </Style>
+        </ListView.ItemContainerStyle>
+
+        <ListView.ContextMenu>
+            <ContextMenu>
+                <MenuItem Command="{Binding RemoveStockCommand}" Header="Remove" />
+            </ContextMenu>
+        </ListView.ContextMenu>
+        <ListView.View>
+
+            <GridView AllowsColumnReorder="true" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
+
+                <GridViewColumn Width="80" Header="Symbol">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Padding="8,8,0,8"
+                                Style="{StaticResource BodyTextBlockStyle}"
+                                Text="{Binding Path=Ticker}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+
+
+                <GridViewColumn Width="75" Header="Last">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate DataType="viewModels:StockViewModel">
+                            <TextBlock
+                                Padding="8,8,0,8"
+                                HorizontalAlignment="Right"
+                                Foreground="{Binding GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
+                                Style="{StaticResource BodyTextBlockStyle}"
+                                Text="{Binding Path=GeneralInformation.RegularMarketPrice.Format}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+
+                <GridViewColumn Width="75" Header="Chg">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate DataType="viewModels:StockViewModel">
+                            <DockPanel>
+                                <TextBlock
+                                    Padding="8,8,0,8"
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Foreground="{Binding GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Text="{Binding Path=GeneralInformation.RegularMarketChange.Format}" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+
+                <GridViewColumn Width="75" Header="Chg%">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate DataType="viewModels:StockViewModel">
+                            <TextBlock
+                                Padding="8,8,0,8"
+                                HorizontalAlignment="Right"
+                                Foreground="{Binding GeneralInformation.RegularMarketChange.Raw, Converter={StaticResource TrendColorConverter}}"
+                                Style="{StaticResource BodyTextBlockStyle}"
+                                Text="{Binding Path=GeneralInformation.RegularMarketChangePercent.Format}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+            </GridView>
+
+        </ListView.View>
+    </ListView>
+</UserControl>
