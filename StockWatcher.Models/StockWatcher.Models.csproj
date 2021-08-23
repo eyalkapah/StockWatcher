@@ -93,6 +93,7 @@
     <Compile Include="Exceptions\UnauthenticatedUserException.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Factories\Yahoo\YahooFactory.cs" />
+    <Compile Include="Messages\ShutdownMessage.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\CandleChart\Candle.cs" />
     <Compile Include="Models\CandleChart\CandlesSource.cs" />

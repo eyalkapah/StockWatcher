@@ -17,14 +17,21 @@ namespace StockWatcher.Services.Services
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IDbService _dbService;
-        private AuthenticatedUser _authenticatedUser;    
+        private AuthenticatedUser _authenticatedUser;
 
+        // C'tor
+        //
         public AuthenticationService(IDbService dbService)
         {
             _dbService = dbService;
         }
 
         public AuthenticatedUser GetAuthenticatedUser() => _authenticatedUser;
+        
+        public void LogOut()
+        {
+            _authenticatedUser = null;
+        }
 
         public async Task<IResponse> RegisterAsync(Account account)
         {

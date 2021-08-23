@@ -4,6 +4,8 @@ using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using StockWatcher.Models.Messages;
 
 namespace StockWatcher
 {
@@ -22,6 +24,16 @@ namespace StockWatcher
             var services = new ServiceCollection();
 
             ConfigureServices(services);
+
+            RegisterEvents();
+        }
+
+        private void RegisterEvents()
+        {
+            WeakReferenceMessenger.Default.Register<ShutdownMessage>(this, (recipient, message) =>
+            {
+                Current.Shutdown();
+            });
         }
 
         private void ConfigureServices(IServiceCollection services)

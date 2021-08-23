@@ -16,6 +16,13 @@ namespace StockWatcher.Converters
                     : Visibility.Visible;
             }
 
+            if (value is bool b)
+            {
+                return b
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+
             return Visibility.Collapsed;
         }
 

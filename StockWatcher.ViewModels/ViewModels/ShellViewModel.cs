@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using StockWatcher.Models.Messages;
+using System;
+using System.Windows.Input;
+using StockWatcher.Services.Interfaces;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
     public class ShellViewModel : ObservableObject
     {
+        private readonly IAuthenticationService _authenticationService;
+        private readonly INavigationService _navigationService;
         private string _title;
+
+        public ICommand ExitCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
 
         public string Title
         {
@@ -17,9 +23,29 @@ namespace StockWatcher.ViewModels.ViewModels
             set => SetProperty(ref _title, value);
         }
 
-        public ShellViewModel()
+        public ShellViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
         {
+            _authenticationService = authenticationService;
+            _navigationService = navigationService;
+
             Title = "Stock Watcher";
+
+            ExitCommand = new RelayCommand(Exit);
+            LogOutCommand = new RelayCommand(LogOut);
+
+            
+        }
+
+        private void LogOut()
+        {
+            _authenticationService.LogOut();
+
+            _navigationService.NavigateToLogin();
+        }
+
+        private static void Exit()
+        {
+            WeakReferenceMessenger.Default.Send(new ShutdownMessage(true));
         }
     }
 }

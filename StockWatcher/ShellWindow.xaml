@@ -16,6 +16,29 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem
+                    x:Name="Exit"
+                    Command="{Binding ExitCommand}"
+                    Header="E_xit" />
+            </MenuItem>
+            <!--<MenuItem Header="_Users">
+                <MenuItem
+                    x:Name="UserManagement"
+                    Command="{Binding NavigateToUserManagementCommand}"
+                    Header="User _Management" />
+            </MenuItem>-->
+
+            <MenuItem Header="_Account" Visibility="{Binding IsLoggedIn, Converter={StaticResource GeneralToVisibilityConverter}}">
+                <MenuItem
+                    x:Name="LogOut"
+                    Command="{Binding LogOutCommand}"
+                    Header="_Log Out" />
+            </MenuItem>
+        </Menu>
+
         <Frame
             x:Name="ContentFrame"
             Grid.Row="1"

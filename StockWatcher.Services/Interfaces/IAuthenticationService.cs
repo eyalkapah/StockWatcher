@@ -10,5 +10,6 @@ namespace StockWatcher.Services.Interfaces
         Task<IResponse> RegisterAsync(Account account);
         Task<bool> AuthenticateAsync(string username, string password);
         AuthenticatedUser GetAuthenticatedUser();
+        void LogOut();
     }
 }
