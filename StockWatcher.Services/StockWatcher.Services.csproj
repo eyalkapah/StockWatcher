@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Helpers\Crypto.cs" />
     <Compile Include="Interfaces\IDbService.cs" />
+    <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\IStatusBarService.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using StockWatcher.Models;
 using StockWatcher.Models.Settings;
 using StockWatcher.Services;
@@ -13,7 +14,10 @@ namespace StockWatcher.Configurations
     {
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
+            services.AddLogging(builder => builder.AddSerilog(dispose: true));
+
             return services.AddSingleton<ITextService, TextService>()
+                .AddSingleton<ILogService, LogService>()
                 .AddSingleton<INavigationService, NavigationService>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IDbService, DbService>()

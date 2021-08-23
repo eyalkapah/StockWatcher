@@ -13,6 +13,7 @@ namespace StockWatcher.ViewModels.ViewModels
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
+        private readonly ILogService _logService;
         private string _title;
 
         public ICommand ExitCommand { get; set; }
@@ -33,10 +34,11 @@ namespace StockWatcher.ViewModels.ViewModels
             set => SetProperty(ref _isLoggedIn, value);
         }
 
-        public ShellViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
+        public ShellViewModel(IAuthenticationService authenticationService, INavigationService navigationService, ILogService logService)
         {
             _authenticationService = authenticationService;
             _navigationService = navigationService;
+            _logService = logService;
 
             Title = "Stock Watcher";
 
@@ -45,6 +47,8 @@ namespace StockWatcher.ViewModels.ViewModels
             RefreshCommand = new RelayCommand(Refresh);
 
             authenticationService.AuthenticationStatusChanged += AuthenticationStatusChanged;
+
+            logService.Verbose("Application started.");
         }
 
         private static void Refresh()
