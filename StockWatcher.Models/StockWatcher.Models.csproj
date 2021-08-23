@@ -94,6 +94,7 @@
     <Compile Include="Exceptions\UnauthenticatedUserException.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Factories\Yahoo\YahooFactory.cs" />
+    <Compile Include="Messages\RefreshMessage.cs" />
     <Compile Include="Messages\ShutdownMessage.cs" />
     <Compile Include="Messages\StatusBarMessage.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />

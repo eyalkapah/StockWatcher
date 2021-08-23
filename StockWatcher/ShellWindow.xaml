@@ -24,12 +24,12 @@
                     Command="{Binding ExitCommand}"
                     Header="E_xit" />
             </MenuItem>
-            <!--<MenuItem Header="_Users">
+            <MenuItem Header="_Options" Visibility="{Binding IsLoggedIn, Converter={StaticResource GeneralToVisibilityConverter}}">
                 <MenuItem
-                    x:Name="UserManagement"
-                    Command="{Binding NavigateToUserManagementCommand}"
-                    Header="User _Management" />
-            </MenuItem>-->
+                    x:Name="Options"
+                    Command="{Binding RefreshCommand}"
+                    Header="_Refresh" />
+            </MenuItem>
 
             <MenuItem Header="_Account" Visibility="{Binding IsLoggedIn, Converter={StaticResource GeneralToVisibilityConverter}}">
                 <MenuItem

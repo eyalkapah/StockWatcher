@@ -8,6 +8,7 @@ using StockWatcher.Services.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -73,6 +74,7 @@ namespace StockWatcher.ViewModels.ViewModels
             AddTickerCommand = new RelayCommand(AddTickerAsync);
             RemoveStockCommand = new RelayCommand(RemoveStock);
 
+            WeakReferenceMessenger.Default.Register<RefreshMessage>(this, RefreshHandler);
 
             Init();
         }
@@ -94,12 +96,10 @@ namespace StockWatcher.ViewModels.ViewModels
                 await PopulateGeneralInformation(stockViewModel);
             }
 
-            WeakReferenceMessenger.Default.Send(new StatusBarMessage(new StatusBarMessageInput
-            {
-                StatusBarMessageType = StatusBarMessageType.Sync,
-                Message = $"Sync time: {DateTime.Now}"
-            }));
+            UpdateStatusBar(DateTime.Now.ToString(CultureInfo.CurrentCulture));
         }
+
+        
 
         private async void SelectedStockChanged(StockViewModel selectedStock)
         {
@@ -111,6 +111,28 @@ namespace StockWatcher.ViewModels.ViewModels
             await PopulateQuotesAsync(selectedStock);
 
             await PopulateGeneralInformation(selectedStock);
+        }
+
+        private async void RefreshHandler(object recipient, RefreshMessage message)
+        {
+            await RefreshAsync();
+        }
+
+        public async Task RefreshAsync()
+        {
+            UpdateStatusBar("Refreshing...");
+
+            foreach (var stockViewModel in Tickers)
+            {
+                await PopulateGeneralInformation(stockViewModel);
+            }
+
+            if (SelectedStock != null)
+            {
+                await PopulateQuotesAsync(SelectedStock);
+            }
+
+            UpdateStatusBar(DateTime.Now.ToString(CultureInfo.InvariantCulture));
         }
 
         private async Task PopulateQuotesAsync(StockViewModel selectedStock)
@@ -203,6 +225,15 @@ namespace StockWatcher.ViewModels.ViewModels
             {
                 // Show error
             }
+        }
+
+        private static void UpdateStatusBar(string message)
+        {
+            WeakReferenceMessenger.Default.Send(new StatusBarMessage(new StatusBarMessageInput
+            {
+                StatusBarMessageType = StatusBarMessageType.Sync,
+                Message = $"Sync time: {message}"
+            }));
         }
     }
 }

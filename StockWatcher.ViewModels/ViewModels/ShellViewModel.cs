@@ -4,6 +4,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using StockWatcher.Models.Messages;
 using System;
 using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using StockWatcher.Services.Interfaces;
 
 namespace StockWatcher.ViewModels.ViewModels
@@ -16,6 +17,7 @@ namespace StockWatcher.ViewModels.ViewModels
 
         public ICommand ExitCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
 
         public string Title
         {
@@ -40,8 +42,14 @@ namespace StockWatcher.ViewModels.ViewModels
 
             ExitCommand = new RelayCommand(Exit);
             LogOutCommand = new RelayCommand(LogOut);
+            RefreshCommand = new RelayCommand(Refresh);
 
             authenticationService.AuthenticationStatusChanged += AuthenticationStatusChanged;
+        }
+
+        private static void Refresh()
+        {
+            WeakReferenceMessenger.Default.Send(new RefreshMessage(null));
         }
 
         private void AuthenticationStatusChanged(object sender, bool isAuthenticated)
