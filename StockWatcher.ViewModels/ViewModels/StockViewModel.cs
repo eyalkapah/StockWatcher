@@ -1,19 +1,23 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using System.Collections.Generic;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using StockWatcher.Models.Models.Models;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
     public class StockViewModel : ObservableObject
     {
-        private decimal _change;
+        //private decimal _change;
 
-        private decimal _changePercentage;
+        //private decimal _changePercentage;
 
-        private decimal _last;
+        //private decimal _last;
         private string _ticker;
 
         public StockViewModel(string ticker)
         {
             Ticker = ticker;
+
+            Quotes = new List<FormattedQuote>();
         }
 
         public string Ticker
@@ -22,22 +26,38 @@ namespace StockWatcher.ViewModels.ViewModels
             set => SetProperty(ref _ticker, value);
         }
 
-        public decimal Last
+        //public decimal Last
+        //{
+        //    get => _last;
+        //    set => SetProperty(ref _last, value);
+        //}
+
+        //public decimal Change
+        //{
+        //    get => _change;
+        //    set => SetProperty(ref _change, value);
+        //}
+
+        //public decimal ChangePercentage
+        //{
+        //    get => _changePercentage;
+        //    set => SetProperty(ref _changePercentage, value);
+        //}
+
+        private List<FormattedQuote> _quotes;
+
+        public List<FormattedQuote> Quotes
         {
-            get => _last;
-            set => SetProperty(ref _last, value);
+            get => _quotes;
+            set => SetProperty(ref _quotes, value);
         }
 
-        public decimal Change
-        {
-            get => _change;
-            set => SetProperty(ref _change, value);
-        }
+        private FormattedGeneralInformation _generalInformation;
 
-        public decimal ChangePercentage
+        public FormattedGeneralInformation GeneralInformation
         {
-            get => _changePercentage;
-            set => SetProperty(ref _changePercentage, value);
+            get => _generalInformation;
+            set => SetProperty(ref _generalInformation, value);
         }
     }
 }

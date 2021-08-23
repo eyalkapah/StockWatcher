@@ -5,7 +5,7 @@ namespace YahooFinance.Contracts
     public class Value
     {
         [JsonPropertyName("raw")]
-        public long Raw { get; set; }
+        public float Raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string Fmt { get; set; }
@@ -13,4 +13,13 @@ namespace YahooFinance.Contracts
         [JsonPropertyName("longFmt")]
         public string LongFmt { get; set; }
     }
+
+    //public class ShortValue
+    //{
+    //    [JsonPropertyName("raw")]
+    //    public float Raw { get; set; }
+
+    //    [JsonPropertyName("fmt")]
+    //    public string Fmt { get; set; }
+    //}
 }

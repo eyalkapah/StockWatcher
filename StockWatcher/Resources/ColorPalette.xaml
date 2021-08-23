@@ -10,6 +10,7 @@
     <Color x:Key="DownRedColor">#F44336</Color>
     <Color x:Key="VeryLightGray">#F0F3FA</Color>
     <Color x:Key="MouseGray">#D1D4DC</Color>
+    <Color x:Key="WhiteColor">White</Color>
 
 
     <SolidColorBrush x:Key="OuterBorderBrush" Color="{StaticResource LightGray}" />
@@ -22,4 +23,5 @@
     <SolidColorBrush x:Key="DownRedBrush" Color="{StaticResource DownRedColor}" />
     <SolidColorBrush x:Key="RowBorderBrush" Color="{StaticResource VeryLightGray}" />
     <SolidColorBrush x:Key="HeadersBrush" Color="{StaticResource MouseGray}" />
+    <SolidColorBrush x:Key="FrameBackgroundBrush" Color="{StaticResource WhiteColor}" />
 </ResourceDictionary>

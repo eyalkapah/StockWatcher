@@ -4,4 +4,6 @@
     xmlns:converters="clr-namespace:StockWatcher.Converters">
     <converters:GeneralToVisibilityConverter x:Key="GeneralToVisibilityConverter" />
     <converters:TrendColorConverter x:Key="TrendColorConverter" />
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityInverseConverter" Inverse="True" />
 </ResourceDictionary>

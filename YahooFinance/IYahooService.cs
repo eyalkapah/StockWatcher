@@ -17,7 +17,7 @@ namespace YahooFinance
             Interval frequency,
             bool includePrePost);
 
-        Task<Profile> GetProfileAsync(string symbol);
+        Task<Profile> GetGeneralInformationAsync(string symbol);
 
         Task<SummaryDetails> GetSummaryDetailsAsync(string symbol);
 

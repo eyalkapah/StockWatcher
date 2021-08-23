@@ -1,0 +1,69 @@
+﻿using System.Text.Json.Serialization;
+
+namespace YahooFinance.Contracts
+{
+
+    public class PriceContract
+    {
+        [JsonPropertyName("quoteSummary")] public Quotesummary QuoteSummary { get; set; }
+    }
+
+    public class Quotesummary
+    {
+        [JsonPropertyName("result")] public Result[] Result { get; set; }
+
+        [JsonPropertyName("error")] public object Error { get; set; }
+    }
+
+    public class Result
+    {
+        [JsonPropertyName("price")] public Price Price { get; set; }
+    }
+
+    public class Price
+    {
+        [JsonPropertyName("postMarketChangePercent")] public ShortValue PostMarketChangePercent { get; set; }
+
+        [JsonPropertyName("postMarketChange")] public ShortValue PostMarketChange { get; set; }
+
+        [JsonPropertyName("postMarketPrice")] public ShortValue PostMarketPrice { get; set; }
+
+        [JsonPropertyName("regularMarketChangePercent")] public ShortValue RegularMarketChangePercent { get; set; }
+
+        [JsonPropertyName("regularMarketChange")] public ShortValue RegularMarketChange { get; set; }
+
+        [JsonPropertyName("regularMarketTime")] public int RegularMarketTime { get; set; }
+
+        [JsonPropertyName("regularMarketPrice")] public ShortValue RegularMarketPrice { get; set; }
+
+        [JsonPropertyName("regularMarketDayHigh")] public ShortValue RegularMarketDayHigh { get; set; }
+
+        [JsonPropertyName("regularMarketDayLow")] public ShortValue RegularMarketDayLow { get; set; }
+
+        [JsonPropertyName("regularMarketVolume")] public Value RegularMarketVolume { get; set; }
+
+        [JsonPropertyName("regularMarketPreviousClose")] public ShortValue RegularMarketPreviousClose { get; set; }
+
+        [JsonPropertyName("regularMarketOpen")] public ShortValue RegularMarketOpen { get; set; }
+
+        [JsonPropertyName("exchange")] public string Exchange { get; set; }
+
+        [JsonPropertyName("exchangeName")] public string ExchangeName { get; set; }
+
+        [JsonPropertyName("marketState")] public string MarketState { get; set; }
+
+        [JsonPropertyName("quoteType")] public string QuoteType { get; set; }
+
+        [JsonPropertyName("symbol")] public string Symbol { get; set; }
+
+        [JsonPropertyName("shortName")] public string ShortName { get; set; }
+
+        [JsonPropertyName("longName")] public string LongName { get; set; }
+
+        [JsonPropertyName("currency")] public string Currency { get; set; }
+
+        [JsonPropertyName("currencySymbol")] public string CurrencySymbol { get; set; }
+
+        [JsonPropertyName("marketCap")] public Value MarketCap { get; set; }
+    }
+}

@@ -49,9 +49,21 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FancyCandles, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FancyCandles.2.7.1\lib\net472\FancyCandles.dll</HintPath>
+    </Reference>
+    <Reference Include="FancyPrimitives, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FancyCandles.2.7.1\lib\net472\FancyPrimitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Toolkit.Mvvm" />
     <Reference Include="Microsoft.Toolkit.Mvvm">
       <HintPath>..\packages\Microsoft.Toolkit.Mvvm.7.0.2\lib\netstandard2.0\Microsoft.Toolkit.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -64,6 +76,9 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,14 +91,18 @@
     <Compile Include="Database\User\UserCreate.cs" />
     <Compile Include="Database\User\UserGet.cs" />
     <Compile Include="Exceptions\UnauthenticatedUserException.cs" />
-    <Compile Include="Extensions\ContractExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Factories\Yahoo\YahooFactory.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\CandleChart\Candle.cs" />
+    <Compile Include="Models\CandleChart\CandlesSource.cs" />
     <Compile Include="Models\DbResponse\DbErrorResponse.cs" />
     <Compile Include="Models\DbResponse\IDbResponse.cs" />
     <Compile Include="Models\DbResponse\DbSuccessResponse.cs" />
+    <Compile Include="Models\Models\FormattedGeneralInformation.cs" />
     <Compile Include="Models\Models\FormattedHistoricalData.cs" />
     <Compile Include="Models\Models\FormattedQuote.cs" />
+    <Compile Include="Models\Models\FormattedValue.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
     <Compile Include="Models\Response\IResponse.cs" />
     <Compile Include="Models\Response\SuccessResponse.cs" />
@@ -102,6 +121,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

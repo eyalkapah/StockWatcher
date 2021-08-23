@@ -9,13 +9,13 @@ namespace YahooFinance.Tests
     {
         [TestMethod]
         [DataRow("MSFT")]
-        public void GetProfileTest(string symbol)
+        public void GetGeneralInformationTest(string symbol)
         {
             // arrange
             var service = new YahooService();
 
             // test
-            var profile = service.GetProfileAsync(symbol).Result;
+            var profile = service.GetGeneralInformationAsync(symbol).Result;
 
             // assert
             Assert.IsNotNull(profile.QuoteSummary.Result.FirstOrDefault());

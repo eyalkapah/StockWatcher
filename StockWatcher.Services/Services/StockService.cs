@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StockWatcher.Models.Extensions;
+using StockWatcher.Models.Factories.Yahoo;
 using StockWatcher.Models.Models.Models;
 using YahooFinance;
 using YahooFinance.Contracts;
@@ -89,6 +90,21 @@ namespace StockWatcher.Services.Services
                 return false;
 
             return true;
+        }
+
+        public async Task<FormattedGeneralInformation> GetStockGeneralInformationAsync(string symbol)
+        {
+            var result = await _yahooService.GetGeneralInformationAsync(symbol);
+
+            var summaryProfile = result.QuoteSummary.Result[0].SummaryProfile;
+            var price = result.QuoteSummary.Result[0].Price;
+
+            var generalInformation = YahooFactory.BuildGeneralInformation(summaryProfile, price);
+            
+            if (generalInformation == null)
+                throw new Exception("Failed to get general information");
+
+            return generalInformation;
         }
 
 

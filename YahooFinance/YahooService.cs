@@ -78,9 +78,9 @@ namespace YahooFinance
             //return contract.GetHistoricalData();
         }
 
-        public async Task<Profile> GetProfileAsync(string symbol)
+        public async Task<Profile> GetGeneralInformationAsync(string symbol)
         {
-            var modules = new List<string> { "summaryProfile" };
+            var modules = new List<string> { "summaryProfile,price" };
 
             var modulesString = string.Join(",", modules);
 

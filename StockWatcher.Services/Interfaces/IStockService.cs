@@ -12,5 +12,6 @@ namespace StockWatcher.Services.Interfaces
         Task<IOrderedEnumerable<FormattedQuote>> GetHistoricalDataAsync(string symbol, int numOfDays);
         Task<FormattedHistoricalData> GetHistoricalDataAsync(string symbol);
         Task<bool> DeleteStockAsync(string ticker);
+        Task<FormattedGeneralInformation> GetStockGeneralInformationAsync(string symbol);
     }
 }
