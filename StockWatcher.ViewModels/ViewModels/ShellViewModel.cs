@@ -23,6 +23,14 @@ namespace StockWatcher.ViewModels.ViewModels
             set => SetProperty(ref _title, value);
         }
 
+        private bool _isLoggedIn;
+
+        public bool IsLoggedIn
+        {
+            get => _isLoggedIn;
+            set => SetProperty(ref _isLoggedIn, value);
+        }
+
         public ShellViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
         {
             _authenticationService = authenticationService;
@@ -33,7 +41,12 @@ namespace StockWatcher.ViewModels.ViewModels
             ExitCommand = new RelayCommand(Exit);
             LogOutCommand = new RelayCommand(LogOut);
 
-            
+            authenticationService.AuthenticationStatusChanged += AuthenticationStatusChanged;
+        }
+
+        private void AuthenticationStatusChanged(object sender, bool isAuthenticated)
+        {
+            IsLoggedIn = isAuthenticated;
         }
 
         private void LogOut()

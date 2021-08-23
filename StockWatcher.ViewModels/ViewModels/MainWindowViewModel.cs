@@ -7,6 +7,7 @@ using StockWatcher.Models.Models.Models;
 using StockWatcher.Services.Interfaces;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,11 +21,35 @@ namespace StockWatcher.ViewModels.ViewModels
     public class MainWindowViewModel : ObservableObject
     {
         private readonly IStockService _stockService;
+        private string _ticker;
+        private StockViewModel _selectedStock;
+
+        public CandlesSource CandlesSource { get; set; }
+
+        public ICommand RemoveStockCommand { get; set; }
+        public ICommand AddTickerCommand { get; }
+
         public ObservableCollection<WatchListItem> WatchList { get; set; }
 
-        public RelayCommand AddTickerCommand { get; }
+        public bool CanAddTicker => !string.IsNullOrWhiteSpace(Ticker);
 
-        private string _ticker;
+        public ObservableCollection<StockViewModel> Tickers { get; }
+
+        public StockViewModel SelectedStock
+        {
+            get => _selectedStock;
+            set
+            {
+                if (_selectedStock == value) 
+                    return;
+                
+                _selectedStock = value;
+
+                SelectedStockChanged(value);
+
+                OnPropertyChanged();
+            }
+        }
 
         public string Ticker
         {
@@ -36,31 +61,6 @@ namespace StockWatcher.ViewModels.ViewModels
             }
         }
 
-        public bool CanAddTicker => !string.IsNullOrWhiteSpace(Ticker);
-
-        public ObservableCollection<StockViewModel> Tickers { get; }
-
-        private StockViewModel _selectedStock;
-
-        public StockViewModel SelectedStock
-        {
-            get => _selectedStock;
-            set
-            {
-                if (_selectedStock != value)
-                {
-                    _selectedStock = value;
-
-                    SelectedStockChanged(value);
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public CandlesSource CandlesSource { get; set; }
-
-        public ICommand RemoveStockCommand { get; set; }
 
         // C'tor
         //
@@ -77,6 +77,30 @@ namespace StockWatcher.ViewModels.ViewModels
             Init();
         }
 
+        private async void Init()
+        {
+            WatchList = new ObservableCollection<WatchListItem>();
+            CandlesSource = new CandlesSource(TimeFrame.M1);
+
+            var stocks = await _stockService.GetUserStocks();
+
+            if (stocks == null)
+                return;
+
+            stocks.ToList().ForEach(ticker => Tickers.Add(new StockViewModel(ticker)));
+
+            foreach (var stockViewModel in Tickers)
+            {
+                await PopulateGeneralInformation(stockViewModel);
+            }
+
+            WeakReferenceMessenger.Default.Send(new StatusBarMessage(new StatusBarMessageInput
+            {
+                StatusBarMessageType = StatusBarMessageType.Sync,
+                Message = $"Sync time: {DateTime.Now}"
+            }));
+        }
+
         private async void SelectedStockChanged(StockViewModel selectedStock)
         {
             CandlesSource.Clear();
@@ -87,13 +111,6 @@ namespace StockWatcher.ViewModels.ViewModels
             await PopulateQuotesAsync(selectedStock);
 
             await PopulateGeneralInformation(selectedStock);
-        }
-
-        private async Task PopulateGeneralInformation(StockViewModel selectedStock)
-        {
-            var generalInformation = await _stockService.GetStockGeneralInformationAsync(selectedStock.Ticker);
-
-            selectedStock.GeneralInformation = generalInformation;
         }
 
         private async Task PopulateQuotesAsync(StockViewModel selectedStock)
@@ -125,6 +142,52 @@ namespace StockWatcher.ViewModels.ViewModels
             }
         }
 
+        private async Task PopulateGeneralInformation(StockViewModel stockViewModel)
+        {
+            try
+            {
+                stockViewModel.GeneralInformation = await _stockService.GetStockGeneralInformationAsync(stockViewModel.Ticker);
+            }
+            catch (Exception e)
+            {
+                Debug.Assert(false, $"Failed to populate general information: {e}");
+            }
+        }
+
+        private async void AddTickerAsync()
+        {
+            if (Tickers.Any(t => t.Ticker.Equals(Ticker)))
+                return;
+
+            var success = await _stockService.AddStockAsync(Ticker);
+
+            if (success)
+            {
+                try
+                {
+                    var viewModel = new StockViewModel(Ticker);
+
+                    Tickers.Add(viewModel);
+
+                    SelectedStock = viewModel;
+
+                    await PopulateQuotesAsync(SelectedStock);
+
+                    await PopulateGeneralInformation(SelectedStock);
+
+                    Ticker = string.Empty;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+            else
+            {
+                // Show error
+            }
+        }
+
         private async void RemoveStock()
         {
             if (SelectedStock == null)
@@ -138,89 +201,8 @@ namespace StockWatcher.ViewModels.ViewModels
             }
             else
             {
-
+                // Show error
             }
-        }
-
-        private async void Init()
-        {
-            WatchList = new ObservableCollection<WatchListItem>();
-            CandlesSource = new CandlesSource(TimeFrame.M1);
-
-            var stocks = await _stockService.GetUserStocks();
-
-            if (stocks == null)
-                return;
-
-            foreach (var ticker in stocks)
-            {
-                Tickers.Add(new StockViewModel(ticker));
-            }
-
-            foreach (var stockViewModel in Tickers)
-            {
-                try
-                {
-                    var generalInformation = await _stockService.GetStockGeneralInformationAsync(stockViewModel.Ticker);
-
-                    stockViewModel.GeneralInformation = generalInformation;
-
-                    //var result = await _stockService.GetHistoricalDataAsync(stockViewModel.Ticker);
-
-                    //stockViewModel.Last = result.Last;
-                    //stockViewModel.Change = result.Change;
-                    //stockViewModel.ChangePercentage = result.ChangeP;
-                    //stockViewModel.Quotes = result.Quotes;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-
-            }
-
-            WeakReferenceMessenger.Default.Send(new StatusBarMessage(new StatusBarMessageInput
-            {
-                StatusBarMessageType = StatusBarMessageType.Sync,
-                Message = $"Sync time: {DateTime.Now}"
-            }));
-        }
-
-        private async void AddTickerAsync()
-        {
-            if (Tickers.Any(t => t.Ticker.Equals(Ticker)))
-                return;
-
-            var success = await _stockService.AddStockAsync(Ticker);
-
-            if (!success)
-            {
-
-            }
-            else
-            {
-                try
-                {
-                    var result = await _stockService.GetHistoricalDataAsync(Ticker);
-
-                    var viewModel = new StockViewModel(Ticker);
-                    //{
-                    //    Last = result.Last,
-                    //    Change = result.Change,
-                    //    ChangePercentage = result.ChangeP
-                    //};
-
-                    Tickers.Add(viewModel);
-
-                    Ticker = string.Empty;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-
-            }
-
         }
     }
 }

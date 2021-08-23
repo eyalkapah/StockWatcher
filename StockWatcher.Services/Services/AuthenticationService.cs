@@ -19,6 +19,8 @@ namespace StockWatcher.Services.Services
         private readonly IDbService _dbService;
         private AuthenticatedUser _authenticatedUser;
 
+        public event EventHandler<bool> AuthenticationStatusChanged = delegate { };
+
         // C'tor
         //
         public AuthenticationService(IDbService dbService)
@@ -31,6 +33,8 @@ namespace StockWatcher.Services.Services
         public void LogOut()
         {
             _authenticatedUser = null;
+
+            AuthenticationStatusChanged(this, false);
         }
 
         public async Task<IResponse> RegisterAsync(Account account)
@@ -84,6 +88,8 @@ namespace StockWatcher.Services.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName
             };
+
+            AuthenticationStatusChanged(this, isMatch);
 
             return isMatch;
         }
