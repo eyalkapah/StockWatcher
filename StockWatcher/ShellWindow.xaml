@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Menu DockPanel.Dock="Top">
+        <Menu Height="20" DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem
                     x:Name="Exit"
