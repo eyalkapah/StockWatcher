@@ -21,6 +21,6 @@
         x:Key="ConfirmationButtonStyle"
         BasedOn="{StaticResource {x:Type Button}}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource ConfirmationButtonBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ConfirmationButtonBackgroundBrush}" />
     </Style>
 </ResourceDictionary>

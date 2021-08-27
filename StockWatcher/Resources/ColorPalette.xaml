@@ -11,17 +11,12 @@
     <Color x:Key="VeryLightGray">#F0F3FA</Color>
     <Color x:Key="MouseGray">#D1D4DC</Color>
     <Color x:Key="WhiteColor">White</Color>
+    <Color x:Key="CustomBlackColor">#010409</Color>
+    <Color x:Key="LightWhiteColor">#F0F6FC</Color>
+    <Color x:Key="LightBlackColor">#161B22</Color>
+    <Color x:Key="MediumBlackColor">#30363D</Color>
 
 
-    <SolidColorBrush x:Key="OuterBorderBrush" Color="{StaticResource LightGray}" />
-    <SolidColorBrush x:Key="InnerBorderBackgroundBrush" Color="{StaticResource GrayColor}" />
-    <SolidColorBrush x:Key="ConfirmationButtonBackgroundBrush" Color="{StaticResource ConfirmationYellow}" />
-    <SolidColorBrush x:Key="ErrorTextBrush" Color="{StaticResource Red}" />
-    <SolidColorBrush x:Key="ErrorTextBackgroundBrush" Color="{StaticResource IndianRed}" />
-    <SolidColorBrush x:Key="ErrorTextBorderBrush" Color="{StaticResource DarkRed}" />
-    <SolidColorBrush x:Key="UpGreenBrush" Color="{StaticResource UpGreenColor}" />
-    <SolidColorBrush x:Key="DownRedBrush" Color="{StaticResource DownRedColor}" />
-    <SolidColorBrush x:Key="RowBorderBrush" Color="{StaticResource VeryLightGray}" />
-    <SolidColorBrush x:Key="HeadersBrush" Color="{StaticResource MouseGray}" />
-    <SolidColorBrush x:Key="FrameBackgroundBrush" Color="{StaticResource WhiteColor}" />
+
+
 </ResourceDictionary>

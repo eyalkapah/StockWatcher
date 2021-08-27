@@ -1,30 +1,51 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Style x:Key="TextBlockBase" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource RegularTextBrush}" />
+    </Style>
 
-    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="TextBlockStyle"
+        BasedOn="{StaticResource TextBlockBase}"
+        TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="TextTrimming" Value="None" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <Style x:Key="BodyTextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="BodyTextBlockStyle"
+        BasedOn="{StaticResource TextBlockBase}"
+        TargetType="TextBlock">
         <Setter Property="FontSize" Value="14" />
     </Style>
 
-    <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="HeaderTextBlockStyle"
+        BasedOn="{StaticResource TextBlockBase}"
+        TargetType="TextBlock">
         <Setter Property="FontSize" Value="28" />
     </Style>
 
-    <Style x:Key="SmallHeaderTextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="SmallHeaderTextBlockStyle"
+        BasedOn="{StaticResource TextBlockBase}"
+        TargetType="TextBlock">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
-    <Style x:Key="SubtitleTextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="SubtitleTextBlockStyle"
+        BasedOn="{StaticResource TextBlockBase}"
+        TargetType="TextBlock">
         <Setter Property="FontSize" Value="20" />
     </Style>
 
-    <Style x:Key="SmallBodyTextBlockStyle" TargetType="TextBlock">
+    <Style
+        x:Key="SmallBodyTextBlockStyle"
+        BasedOn="{StaticResource TextBlockBase}"
+        TargetType="TextBlock">
         <Setter Property="FontSize" Value="12" />
     </Style>
 

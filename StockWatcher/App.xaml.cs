@@ -26,6 +26,8 @@ namespace StockWatcher
             ConfigureServices(services);
 
             RegisterEvents();
+
+
         }
 
         private void RegisterEvents()

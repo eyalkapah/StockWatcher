@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+
+    <SolidColorBrush x:Key="InnerBorderBackgroundBrush" Color="{StaticResource GrayColor}" />
+    <SolidColorBrush x:Key="ConfirmationButtonBackgroundBrush" Color="{StaticResource ConfirmationYellow}" />
+    <SolidColorBrush x:Key="ErrorTextBrush" Color="{StaticResource Red}" />
+    <SolidColorBrush x:Key="ErrorTextBackgroundBrush" Color="{StaticResource IndianRed}" />
+    <SolidColorBrush x:Key="ErrorTextBorderBrush" Color="{StaticResource DarkRed}" />
+    <SolidColorBrush x:Key="UpGreenBrush" Color="{StaticResource UpGreenColor}" />
+    <SolidColorBrush x:Key="DownRedBrush" Color="{StaticResource DownRedColor}" />
+    <SolidColorBrush x:Key="RowBorderBrush" Color="{StaticResource VeryLightGray}" />
+    <SolidColorBrush x:Key="HeadersBrush" Color="{StaticResource MouseGray}" />
+    <SolidColorBrush x:Key="FrameBackgroundBrush" Color="{StaticResource CustomBlackColor}" />
+    <SolidColorBrush x:Key="RegularTextBrush" Color="{StaticResource LightWhiteColor}" />
+    <SolidColorBrush x:Key="InnerFrameBackgroundBrush" Color="{StaticResource LightBlackColor}" />
+    <SolidColorBrush x:Key="InnerFrameBorderBrush" Color="{StaticResource MediumBlackColor}" />
+</ResourceDictionary>

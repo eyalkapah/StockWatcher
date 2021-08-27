@@ -16,7 +16,7 @@
                     <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
                         <Border
                             Background="Transparent"
-                            BorderBrush="{StaticResource RowBorderBrush}"
+                            BorderBrush="{DynamicResource RowBorderBrush}"
                             BorderThickness="0,0,0,1">
                             <TextBlock
                                 x:Name="ContentHeader"
@@ -38,7 +38,7 @@
     </UserControl.Resources>
     <ListView
         Margin="0,0,0,4"
-        BorderBrush="{StaticResource RowBorderBrush}"
+        BorderBrush="{DynamicResource RowBorderBrush}"
         DataContext="{Binding ElementName=StockListControl, Path=ViewModel}"
         ItemsSource="{Binding Tickers}"
         SelectedItem="{Binding SelectedStock}">

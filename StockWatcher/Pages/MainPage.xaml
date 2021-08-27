@@ -9,7 +9,7 @@
     Title="MainPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    Background="{StaticResource HeadersBrush}"
+    Background="{DynamicResource HeadersBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     mc:Ignorable="d">
 
@@ -59,7 +59,7 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Background="{StaticResource FrameBackgroundBrush}"
+                Background="{DynamicResource FrameBackgroundBrush}"
                 SelectedStock="{Binding SelectedStock, Mode=OneWay}"
                 Visibility="{Binding SelectedStock, Converter={StaticResource NullToVisibilityConverter}}" />
 
@@ -70,7 +70,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Margin="8,0,0,0"
-            Background="{StaticResource FrameBackgroundBrush}"
+            Background="{DynamicResource FrameBackgroundBrush}"
             Visibility="{Binding SelectedStock, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
 
             <Grid.RowDefinitions>

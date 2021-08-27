@@ -19,8 +19,8 @@
             <customControls:ErrorLabel Text="{Binding ErrorMessage}" />
 
             <Border
-                Background="{StaticResource InnerBorderBackgroundBrush}"
-                BorderBrush="{StaticResource OuterBorderBrush}"
+                Background="{DynamicResource InnerBorderBackgroundBrush}"
+                BorderBrush="{DynamicResource InnerFrameBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="5">
                 <StackPanel Margin="15">

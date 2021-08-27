@@ -20,7 +20,7 @@
             Text="{Binding GeneralInformation.ShortName}" />
         <TextBlock
             Margin="0,4"
-            Foreground="{StaticResource HeadersBrush}"
+            Foreground="{DynamicResource HeadersBrush}"
             Style="{StaticResource SmallBodyTextBlockStyle}"
             Text="{Binding GeneralInformation.Sector}" />
 

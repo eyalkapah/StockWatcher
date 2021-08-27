@@ -13,11 +13,11 @@
                         Background="Transparent"
                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Converter={StaticResource GeneralToVisibilityConverter}}">
                         <Border
-                            BorderBrush="{StaticResource ErrorTextBorderBrush}"
+                            BorderBrush="{DynamicResource ErrorTextBorderBrush}"
                             BorderThickness="1"
                             CornerRadius="8" />
                         <Border
-                            Background="{StaticResource ErrorTextBackgroundBrush}"
+                            Background="{DynamicResource ErrorTextBackgroundBrush}"
                             ClipToBounds="True"
                             CornerRadius="8"
                             Opacity="0.3" />

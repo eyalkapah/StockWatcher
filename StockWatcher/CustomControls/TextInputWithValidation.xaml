@@ -20,7 +20,7 @@
                             <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
                                 Margin="0,2"
-                                Foreground="{StaticResource ErrorTextBrush}"
+                                Foreground="{DynamicResource ErrorTextBrush}"
                                 Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ErrorText, Converter={StaticResource GeneralToVisibilityConverter}}">
                                 <Run Text="*" />
                                 <Run Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ErrorText}" />

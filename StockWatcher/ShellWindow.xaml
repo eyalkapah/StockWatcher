@@ -43,6 +43,7 @@
         <Frame
             x:Name="ContentFrame"
             Grid.Row="1"
+            Background="{DynamicResource FrameBackgroundBrush}"
             NavigationUIVisibility="Hidden" />
         <StatusBar
             x:Name="StatusBar"
