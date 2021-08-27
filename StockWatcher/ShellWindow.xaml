@@ -9,6 +9,7 @@
     Width="1280"
     Height="1024"
     DataContext="{Binding Source={StaticResource Locator}, Path=Shell}"
+    Icon="Assets/Images/candlestick.ico"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
