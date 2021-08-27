@@ -33,6 +33,7 @@
         TargetType="TextBlock">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource HeaderBrush}" />
     </Style>
 
     <Style
@@ -40,6 +41,7 @@
         BasedOn="{StaticResource TextBlockBase}"
         TargetType="TextBlock">
         <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="{DynamicResource HeaderBrush}" />
     </Style>
 
     <Style

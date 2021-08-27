@@ -31,21 +31,21 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="{DynamicResource HeaderBrush}" />
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
     <ListView
         Margin="0,0,0,4"
-        BorderBrush="{DynamicResource RowBorderBrush}"
         DataContext="{Binding ElementName=StockListControl, Path=ViewModel}"
         ItemsSource="{Binding Tickers}"
-        SelectedItem="{Binding SelectedStock}">
+        SelectedItem="{Binding SelectedStock}"
+        Style="{DynamicResource ListViewStyle}">
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                <Setter Property="BorderBrush" Value="{StaticResource RowBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource InnerFrameBorderBrush}" />
                 <Setter Property="BorderThickness" Value="0,0,0,1" />
             </Style>
         </ListView.ItemContainerStyle>

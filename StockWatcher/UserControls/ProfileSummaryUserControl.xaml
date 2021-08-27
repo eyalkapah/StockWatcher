@@ -7,6 +7,7 @@
     x:Name="ProfileSummaryControl"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="{DynamicResource InnerFrameBackgroundBrush}"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style
@@ -38,7 +39,7 @@
 
 
         <TextBlock Margin="8,0" Style="{StaticResource BodyTextBlockStyle}">
-            <Hyperlink NavigateUri="{Binding GeneralInformation.Website}">
+            <Hyperlink NavigateUri="{Binding GeneralInformation.Website}" Style="{DynamicResource HyperlinkTextStyle}">
                 <Hyperlink.Inlines>
                     <Run Text="{Binding GeneralInformation.Website}" />
                 </Hyperlink.Inlines>

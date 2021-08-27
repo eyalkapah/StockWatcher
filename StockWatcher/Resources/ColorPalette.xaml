@@ -15,7 +15,12 @@
     <Color x:Key="LightWhiteColor">#F0F6FC</Color>
     <Color x:Key="LightBlackColor">#161B22</Color>
     <Color x:Key="MediumBlackColor">#30363D</Color>
-
+    <Color x:Key="DarkBlackColor">#20252B</Color>
+    <Color x:Key="MediumGreenColor">#2EA44F</Color>
+    <Color x:Key="LightPurpleColor">#8166DD</Color>
+    <Color x:Key="LightBlueColor">#58A6FF</Color>
+    <Color x:Key="LightGrayWhiteColor">#C3D1CC</Color>
+    <Color x:Key="MediumGrayWhiteColor">#8B949E</Color>
 
 
 

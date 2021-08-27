@@ -13,7 +13,11 @@
     <SolidColorBrush x:Key="RowBorderBrush" Color="{StaticResource VeryLightGray}" />
     <SolidColorBrush x:Key="HeadersBrush" Color="{StaticResource MouseGray}" />
     <SolidColorBrush x:Key="FrameBackgroundBrush" Color="{StaticResource CustomBlackColor}" />
-    <SolidColorBrush x:Key="RegularTextBrush" Color="{StaticResource LightWhiteColor}" />
+    <SolidColorBrush x:Key="RegularTextBrush" Color="{StaticResource MediumGrayWhiteColor}" />
+    <SolidColorBrush x:Key="HeaderBrush" Color="{StaticResource LightGrayWhiteColor}" />
     <SolidColorBrush x:Key="InnerFrameBackgroundBrush" Color="{StaticResource LightBlackColor}" />
     <SolidColorBrush x:Key="InnerFrameBorderBrush" Color="{StaticResource MediumBlackColor}" />
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="{StaticResource MediumBlackColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource DarkBlackColor}" />
+    <SolidColorBrush x:Key="HyperlinkForegroundBrush" Color="{StaticResource LightBlueColor}" />
 </ResourceDictionary>

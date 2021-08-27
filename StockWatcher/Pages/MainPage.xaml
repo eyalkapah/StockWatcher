@@ -9,7 +9,7 @@
     Title="MainPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    Background="{DynamicResource HeadersBrush}"
+    Background="{DynamicResource FrameBackgroundBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     mc:Ignorable="d">
 
@@ -32,11 +32,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <TextBox
-                Height="30"
-                Margin="0,0,0,4"
-                FontSize="14"
-                Text="{Binding Ticker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Margin="0,0,0,4" Text="{Binding Ticker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Button
                 Grid.Row="0"
                 Grid.Column="1"
@@ -59,7 +55,6 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Background="{DynamicResource FrameBackgroundBrush}"
                 SelectedStock="{Binding SelectedStock, Mode=OneWay}"
                 Visibility="{Binding SelectedStock, Converter={StaticResource NullToVisibilityConverter}}" />
 
@@ -70,7 +65,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Margin="8,0,0,0"
-            Background="{DynamicResource FrameBackgroundBrush}"
+            Background="{DynamicResource InnerFrameBackgroundBrush}"
             Visibility="{Binding SelectedStock, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
 
             <Grid.RowDefinitions>
@@ -88,6 +83,7 @@
             <fancyCandles:CandleChart
                 Grid.Row="1"
                 Margin="8"
+                AxisTickColor="{DynamicResource RegularTextBrush}"
                 CandlesSource="{Binding CandlesSource}" />
 
             <!--  Summary Profile  -->

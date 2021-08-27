@@ -7,6 +7,7 @@
     x:Name="PriceControl"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="{DynamicResource InnerFrameBackgroundBrush}"
     mc:Ignorable="d">
     <StackPanel Margin="8" DataContext="{Binding ElementName=PriceControl, Path=SelectedStock}">
         <TextBlock
@@ -49,7 +50,10 @@
             <Run Text=")" />
         </TextBlock>
 
-        <TextBlock Margin="0,8" Text="{Binding GeneralInformation.MarketState}" />
+        <TextBlock
+            Margin="0,8"
+            Style="{DynamicResource BodyTextBlockStyle}"
+            Text="{Binding GeneralInformation.MarketState}" />
 
         <TextBlock
             Margin="0,8"
@@ -65,19 +69,25 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Margin="0,0,0,4" Text="VOLUME" />
+            <TextBlock
+                Margin="0,0,0,4"
+                Style="{DynamicResource BodyTextBlockStyle}"
+                Text="VOLUME" />
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
+                Style="{DynamicResource BodyTextBlockStyle}"
                 Text="{Binding GeneralInformation.RegularMarketVolume.Format}" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="0,0,0,4"
+                Style="{DynamicResource BodyTextBlockStyle}"
                 Text="MARKET CAP" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="1"
+                Style="{DynamicResource BodyTextBlockStyle}"
                 Text="{Binding GeneralInformation.MarketCap.Format}" />
 
         </Grid>
