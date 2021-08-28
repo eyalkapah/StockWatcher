@@ -89,6 +89,10 @@
       <Project>{68087DA3-0E32-4904-BC9B-A8DC15FD45CF}</Project>
       <Name>StockWatcher.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StockWatcher.Services\StockWatcher.Services.csproj">
+      <Project>{4B9E6B30-C641-46E3-97AB-1514FC1587B6}</Project>
+      <Name>StockWatcher.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YahooFinance\YahooFinance.csproj">
       <Project>{28163D21-BC8A-4EF4-9E2E-354CE72EE8AF}</Project>
       <Name>YahooFinance</Name>

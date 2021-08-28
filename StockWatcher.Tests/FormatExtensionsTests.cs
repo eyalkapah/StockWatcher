@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StockWatcher.Models.Factories.Yahoo;
 using System.Linq;
+using StockWatcher.Services.Services;
 using YahooFinance;
 
 namespace StockWatcher.Tests

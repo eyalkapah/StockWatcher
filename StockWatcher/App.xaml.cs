@@ -59,7 +59,7 @@ namespace StockWatcher
 #if DEBUG
             builder.AddJsonFile("appSettings-debug.json", false);
 #else
-            builder.AddJsonFile("appsettings-secrets.json", false);
+            builder.AddJsonFile("appSettings.json", false);
 #endif
 
             return builder.Build();

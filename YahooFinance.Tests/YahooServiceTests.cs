@@ -38,22 +38,6 @@ namespace YahooFinance.Tests
 
             // assert
             Assert.IsNotNull(data);
-
-            //Assert.AreEqual(numOfDays, data.ToList().Count);
-        }
-
-        [TestMethod]
-        [DataRow("MSFT")]
-        public void GetSummaryDetailsTest(string symbol)
-        {
-            // arrange
-            var service = new YahooService();
-
-            // test
-            var data = service.GetSummaryDetailsAsync(symbol).Result;
-
-            // assert
-            Assert.IsNotNull(data);
         }
 
         [TestMethod]

@@ -20,20 +20,6 @@ namespace StockWatcher.Services.Services
             _client = new YahooClient();
         }
 
-        //public async Task<IEnumerable<Price>> GetHistoricalDataAsync(string[] symbols, int numOfDays)
-        //{
-        //    var list = new List<Price>();
-
-        //    foreach (var symbol in symbols)
-        //    {
-        //        var entries = await GetHistoricalDataAsync(symbol, numOfDays);
-
-        //        list.AddRange(entries);
-        //    }
-
-        //    return list;
-        //}
-
         public async Task<HistoricalData> GetHistoricalDataAsync(string symbol, int numOfDays)
         {
             var result = await GetHistoricalDataAsync(
@@ -63,13 +49,6 @@ namespace StockWatcher.Services.Services
                       $"&period2={yEndTimeEpoch}" +
                       $"&interval={yInterval}";
 
-            //var url =
-            //    $"?frequency={yfFrequency}" +
-            //    "&filter=history" +
-            //    $"&period1={yfStartTime}" +
-            //    $"&period2={yfEndTimeEpoch}" +
-            //    $"&symbol={symbol}";
-
             var response = await _client.HttpGetClientYahoo(url);
 
             var json = await response.Content.ReadAsStringAsync();
@@ -77,7 +56,6 @@ namespace StockWatcher.Services.Services
             var data = JsonSerializer.Deserialize<HistoricalData>(json);
 
             return data;
-            //return contract.GetHistoricalData();
         }
 
         public async Task<Profile> GetGeneralInformationAsync(string symbol)
@@ -97,23 +75,6 @@ namespace StockWatcher.Services.Services
             return profile;
         }
 
-        public async Task<SummaryDetails> GetSummaryDetailsAsync(string symbol)
-        {
-            var modules = new List<string> { "summaryDetail" };
-
-            var modulesString = string.Join(",", modules);
-
-            var url = $"{symbol}?modules={modulesString}";
-
-            var response = await _client.GetV10Client(url);
-
-            var json = await response.Content.ReadAsStringAsync();
-
-            var summaryDetails = JsonSerializer.Deserialize<SummaryDetails>(json);
-
-            return summaryDetails;
-        }
-        
         public async Task<HistoricalData> GetHistoricalDataAsync(string symbol)
         {
             var url = $"{symbol}?symbol={symbol}";
