@@ -1,11 +1,10 @@
-﻿using StockWatcher.Configurations;
-using StockWatcher.Services.Interfaces;
-using System.Windows;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using StockWatcher.Configurations;
 using StockWatcher.Models.Messages;
+using System.Windows;
 
 namespace StockWatcher
 {
@@ -26,8 +25,6 @@ namespace StockWatcher
             ConfigureServices(services);
 
             RegisterEvents();
-
-
         }
 
         private void RegisterEvents()
@@ -41,6 +38,8 @@ namespace StockWatcher
         private void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureServices();
+
+            services.ConfigureConditionalServices(Configuration);
 
             services.ConfigureViewModels();
 

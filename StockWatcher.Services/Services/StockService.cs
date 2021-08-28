@@ -21,9 +21,9 @@ namespace StockWatcher.Services.Services
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IDbService _dbService;
-        private readonly IYahooService _yahooService;
+        private readonly IDataProviderService _yahooService;
 
-        public StockService(IAuthenticationService authenticationService, IDbService dbService, IYahooService yahooService)
+        public StockService(IAuthenticationService authenticationService, IDbService dbService, IDataProviderService yahooService)
         {
             _authenticationService = authenticationService;
             _dbService = dbService;

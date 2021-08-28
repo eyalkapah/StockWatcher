@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using YahooFinance.Contracts;
 using YahooFinance.Enums;
 
-namespace YahooFinance
+namespace StockWatcher.Services.Interfaces
 {
-    public interface IYahooService
+    public interface IDataProviderService
     {
         //Task<IEnumerable<Price>> GetHistoricalDataAsync(string[] symbols, int numOfDays);
         Task<HistoricalData> GetHistoricalDataAsync(string symbol, int numOfDays);

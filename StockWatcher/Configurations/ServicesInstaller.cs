@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using StockWatcher.Models;
 using StockWatcher.Models.Settings;
 using StockWatcher.Services;
 using StockWatcher.Services.Interfaces;
 using StockWatcher.Services.Services;
-using YahooFinance;
 
 namespace StockWatcher.Configurations
 {
@@ -21,11 +19,20 @@ namespace StockWatcher.Configurations
                 .AddSingleton<INavigationService, NavigationService>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IDbService, DbService>()
-                .AddSingleton<IYahooService, YahooService>()
                 .AddSingleton<IStockService, StockService>()
                 .AddSingleton<IStatusBarService, StatusBarService>()
                 .AddSingleton<IThemeService, ThemeService>();
 
+        }
+
+        public static void ConfigureConditionalServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            var dataProvider = configuration["DataProvider"];
+
+            if (dataProvider.Equals("Yahoo"))
+            {
+                services.AddSingleton<IDataProviderService, YahooService>();
+            }
         }
 
         public static void ConfigureDb(this IServiceCollection services, IConfiguration configuration, string name)

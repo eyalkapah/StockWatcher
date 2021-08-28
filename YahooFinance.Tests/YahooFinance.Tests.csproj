@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StockWatcher.Services\StockWatcher.Services.csproj">
+      <Project>{4b9e6b30-c641-46e3-97ab-1514fc1587b6}</Project>
+      <Name>StockWatcher.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YahooFinance\YahooFinance.csproj">
       <Project>{28163d21-bc8a-4ef4-9e2e-354ce72ee8af}</Project>
       <Name>YahooFinance</Name>

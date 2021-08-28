@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using StockWatcher.Services.Interfaces;
+using YahooFinance;
 using YahooFinance.Contracts;
 using YahooFinance.Enums;
 using YahooFinance.Extensions;
 using YahooFinance.Helpers;
 
-namespace YahooFinance
+namespace StockWatcher.Services.Services
 {
-    public class YahooService : IYahooService
+    public class YahooService : IDataProviderService
     {
         private readonly YahooClient _client;
 
