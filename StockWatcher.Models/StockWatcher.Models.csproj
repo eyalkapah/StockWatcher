@@ -91,6 +91,7 @@
     <Compile Include="Database\User\UserCreate.cs" />
     <Compile Include="Database\User\UserGet.cs" />
     <Compile Include="Enums\StatusBarMessageType.cs" />
+    <Compile Include="Enums\Themes.cs" />
     <Compile Include="Exceptions\UnauthenticatedUserException.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Factories\Yahoo\YahooFactory.cs" />

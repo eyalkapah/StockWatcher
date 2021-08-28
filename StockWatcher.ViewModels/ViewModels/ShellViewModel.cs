@@ -1,11 +1,10 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using StockWatcher.Models.Enums;
 using StockWatcher.Models.Messages;
-using System;
-using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using StockWatcher.Services.Interfaces;
+using System.Windows.Input;
 
 namespace StockWatcher.ViewModels.ViewModels
 {
@@ -13,12 +12,13 @@ namespace StockWatcher.ViewModels.ViewModels
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
-        private readonly ILogService _logService;
+        private readonly IThemeService _themeService;
         private string _title;
 
         public ICommand ExitCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
+        public ICommand SetThemeCommand { get; set; }
 
         public string Title
         {
@@ -34,21 +34,51 @@ namespace StockWatcher.ViewModels.ViewModels
             set => SetProperty(ref _isLoggedIn, value);
         }
 
-        public ShellViewModel(IAuthenticationService authenticationService, INavigationService navigationService, ILogService logService)
+        private bool _isLightThemeEnabled;
+
+        public bool IsLightThemeEnabled
+        {
+            get => _isLightThemeEnabled;
+            set => SetProperty(ref _isLightThemeEnabled, value);
+        }
+
+        private bool _isDarkThemeEnabled;
+
+        public bool IsDarkThemeEnabled
+        {
+            get => _isDarkThemeEnabled;
+            set => SetProperty(ref _isDarkThemeEnabled, value);
+        }
+
+        // C'tor
+        //
+        public ShellViewModel(IAuthenticationService authenticationService, INavigationService navigationService,
+            ILogService logService, IThemeService themeService)
         {
             _authenticationService = authenticationService;
             _navigationService = navigationService;
-            _logService = logService;
+            _themeService = themeService;
 
             Title = "Stock Watcher";
 
             ExitCommand = new RelayCommand(Exit);
             LogOutCommand = new RelayCommand(LogOut);
             RefreshCommand = new RelayCommand(Refresh);
+            SetThemeCommand = new RelayCommand<Themes>(SetTheme);
 
             authenticationService.AuthenticationStatusChanged += AuthenticationStatusChanged;
 
             logService.Verbose("Application started.");
+
+            IsLightThemeEnabled = true;
+        }
+
+        private void SetTheme(Themes theme)
+        {
+            _themeService.SetTheme(theme);
+
+            IsLightThemeEnabled = theme == Themes.Light;
+            IsDarkThemeEnabled = theme == Themes.Dark;
         }
 
         private static void Refresh()

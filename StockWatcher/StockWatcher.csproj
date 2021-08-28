@@ -207,6 +207,7 @@
     </ApplicationDefinition>
     <Compile Include="Configurations\ServicesInstaller.cs" />
     <Compile Include="Configurations\ViewModelsInstaller.cs" />
+    <Compile Include="Converters\BooleanInverseConverter.cs" />
     <Compile Include="Converters\GeneralToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\StringToResourceConverter.cs" />
@@ -222,6 +223,7 @@
     </Compile>
     <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ThemeService.cs" />
     <Compile Include="UserControls\PriceUserControl.xaml.cs">
       <DependentUpon>PriceUserControl.xaml</DependentUpon>
     </Compile>

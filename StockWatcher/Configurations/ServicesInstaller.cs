@@ -23,7 +23,8 @@ namespace StockWatcher.Configurations
                 .AddSingleton<IDbService, DbService>()
                 .AddSingleton<IYahooService, YahooService>()
                 .AddSingleton<IStockService, StockService>()
-                .AddSingleton<IStatusBarService, StatusBarService>();
+                .AddSingleton<IStatusBarService, StatusBarService>()
+                .AddSingleton<IThemeService, ThemeService>();
 
         }
 

@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\IStatusBarService.cs" />
+    <Compile Include="Interfaces\IThemeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\ITextService.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />

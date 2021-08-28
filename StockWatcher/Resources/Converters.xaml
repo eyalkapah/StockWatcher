@@ -7,4 +7,5 @@
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityInverseConverter" Inverse="True" />
     <converters:StringToResourceConverter x:Key="StringToResourceConverter" />
+    <converters:BooleanInverseConverter x:Key="BooleanInverseConverter" />
 </ResourceDictionary>
