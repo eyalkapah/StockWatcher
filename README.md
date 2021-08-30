@@ -26,10 +26,10 @@ Some key features the application has:
 * Tests using MSTests
 
 
-Light theme:
+Light theme:<br />
 ![main-light](https://user-images.githubusercontent.com/32191482/131389635-379dba34-547c-466c-89c8-28ce95b6b22b.png)
 
-Dark theme:
+Dark theme:<br />
 ![main-dark](https://user-images.githubusercontent.com/32191482/131389719-a544abb8-e59b-406e-8a54-8e604941ff79.png)
 
 
